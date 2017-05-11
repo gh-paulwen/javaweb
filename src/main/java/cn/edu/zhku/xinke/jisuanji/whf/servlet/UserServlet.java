@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import cn.edu.zhku.xinke.jisuanji.whf.model.User;
 import cn.edu.zhku.xinke.jisuanji.whf.service.UserService;
 
+/**
+ * temp
+ * @author Paul
+ * 
+ * */
 public class UserServlet extends BaseServlet{
 
 	private static final long serialVersionUID = 7412784119817382692L;

@@ -2,6 +2,11 @@ package cn.edu.zhku.xinke.jisuanji.whf.util;
 
 import java.util.Arrays;
 
+/**
+ * 封装sql和params
+ * @author Paul
+ * 
+ * */
 public final class JdbcAction {
 	
 	private final String sql;

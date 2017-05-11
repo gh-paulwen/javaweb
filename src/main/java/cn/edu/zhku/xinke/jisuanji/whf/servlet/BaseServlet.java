@@ -8,7 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BaseServlet extends HttpServlet{
+/**
+ * 专门用作继承，目的是减少Servlet的数量，连接时url写成: servletName?method=methodName&param=xxx
+ * @author Paul
+ * 
+ * */
+public abstract class BaseServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 9162442764842064382L;
 	

@@ -5,6 +5,11 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+/**
+ * 不知为何之前的乱码不用解决了
+ * @author Paul
+ * 
+ * */
 public class EncodingRequestWrapper extends HttpServletRequestWrapper{
 	
 	private HttpServletRequest request ;

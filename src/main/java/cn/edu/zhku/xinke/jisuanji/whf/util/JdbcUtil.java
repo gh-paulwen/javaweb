@@ -18,6 +18,10 @@ import cn.edu.zhku.xinke.jisuanji.whf.dao.handler.ObjectListHandler;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+/**
+ * Jdbc工具，使用了c3p0，配置文件是类路径中的jdbc.properties
+ * @author Paul 
+ * */
 public class JdbcUtil {
 
 	//singleton
@@ -67,6 +71,14 @@ public class JdbcUtil {
 		return conn;
 	}
 	
+	/**
+	 * 执行增删改操作
+	 * 
+	 * @author Paul 
+	 * @param sql 
+	 * @param params 参数
+	 * @return 受影响行数
+	 * */
 	public int execute(String sql,Object... params){
 		int res = 0;
 		try {
@@ -77,22 +89,37 @@ public class JdbcUtil {
 		return res;
 	}
 	
+	/**
+	 * 执行增删改操作
+	 * @author Paul
+	 * @param action 包含sql和params的封装，为了事务处理更方便一些
+	 * @return 受影响行数
+	 * 
+	 * */
 	public int execute(JdbcAction action){
 		if(action == null) throw new NullPointerException("action can not be null");
 		int res = execute(action.getSql(),action.getParams());
 		return res;
 	}
 	
-	//事务版execute
+	
+	/**
+	 * 事务版的增删改操作
+	 * @author Paul
+	 * @param actions action列表
+	 * @return 受影响行数
+	 * */
 	public int execute(List<JdbcAction> actions){
 		if(actions == null|| actions.size() < 1) throw new NullPointerException();
+		int res = 0;
 		Connection conn = null;
 		try{
 			conn = dataSource.getConnection();
 			conn.setAutoCommit(false);
 			for(int i=0;i<actions.size();i++){
 				JdbcAction action = actions.get(i);
-				queryRunner.update(conn, action.getSql(),action.getParams());
+				int temp = queryRunner.update(conn, action.getSql(),action.getParams());
+				res += temp;
 			}
 			conn.commit();
 		}catch(SQLException e){
@@ -107,9 +134,17 @@ public class JdbcUtil {
 			
 			e.printStackTrace();
 		}		
-		return 0;
+		return res;
 	}
 	
+	/**
+	 * 查询并加入到Bean中
+	 * @author Paul
+	 * @param action 
+	 * @param c 实体类的class	  
+	 * @return t 对应实体
+	 * 
+	 * */
 	public <T> T query(JdbcAction action,Class<T> c){
 		T t = null;
 		try {
@@ -120,6 +155,14 @@ public class JdbcUtil {
 		return t;
 	}
 	
+	/**
+	 * 查询列表
+	 * @author Paul
+	 * @param action 
+	 * @param c 实体类的class	  
+	 * @return list 对应结果集populate到bean后添加到列表
+	 * 
+	 * */
 	public <T> List<T> queryList(JdbcAction action,Class<T> c){
 		List<T> list = Collections.emptyList();
 		try {
@@ -130,6 +173,12 @@ public class JdbcUtil {
 		return list;
 	}
 	
+	/**
+	 * 查询单个值
+	 * @author Paul
+	 * @param action
+	 * @return obj 结果，需要强转
+	 * */
 	public Object queryPrimitive(JdbcAction action){
 		Object obj = null;
 		try {
@@ -140,6 +189,12 @@ public class JdbcUtil {
 		return obj;
 	}
 	
+	/**
+	 * 查询单值列表
+	 * @author Paul
+	 * @param action
+	 * @return list list of primitive
+	 * */
 	public List<Object> queryPrimitiveList(JdbcAction action){
 		List<Object> list = Collections.emptyList();
 		try {

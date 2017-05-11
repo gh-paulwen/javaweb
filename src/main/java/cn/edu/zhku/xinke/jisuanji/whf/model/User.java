@@ -1,5 +1,10 @@
 package cn.edu.zhku.xinke.jisuanji.whf.model;
 
+/**
+ * temp
+ * @author Paul
+ * 
+ * */
 public class User {
 	
 	private int id;

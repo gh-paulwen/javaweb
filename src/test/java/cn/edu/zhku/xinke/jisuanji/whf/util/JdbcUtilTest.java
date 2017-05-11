@@ -46,9 +46,7 @@ public class JdbcUtilTest {
 		};
 		action = new JdbcAction(sql, params);
 		actions.add(action);
-		
 		jdbcUtil.execute(actions);
-		
 	}
 	
 	@Test
