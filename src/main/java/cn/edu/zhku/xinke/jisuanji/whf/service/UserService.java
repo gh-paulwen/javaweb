@@ -2,6 +2,7 @@ package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import cn.edu.zhku.xinke.jisuanji.whf.dao.UserDao;
 import cn.edu.zhku.xinke.jisuanji.whf.model.User;
+import cn.edu.zhku.xinke.jisuanji.whf.util.TxConstructor;
 
 /**
  * temp
@@ -23,6 +24,20 @@ public class UserService {
 	
 	public User get(int id){
 		return userDao.get(id);
+	}
+	
+	public void txsave(){
+		User user = new User();
+		user.setName("Mary");
+		user.setAge(18);
+		TxConstructor tc = new TxConstructor();
+		userDao.save(user, tc);
+//		user = new User();
+//		user.setName("Louis");
+//		user.setAge(19);
+		user.setName(null);
+		userDao.save(user, tc);
+		tc.commit();
 	}
 
 }
