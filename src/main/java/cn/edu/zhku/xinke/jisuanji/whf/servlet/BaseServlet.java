@@ -41,7 +41,7 @@ public abstract class BaseServlet extends HttpServlet{
 			String command = (String)obj;
 			boolean match = command.matches(".*:.*");
 			if(match){
-				// f:page r:page			
+				// forward:page redirect:page			
 				String[] components = command.split(":");
 				String howto = components[0];
 				String page = components[1];

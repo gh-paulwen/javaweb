@@ -1,17 +1,43 @@
 package cn.edu.zhku.xinke.jisuanji.whf.model;
 
+import java.util.Date;
+
 /**
- * temp
  * @author Paul
  * 
  * */
 public class User {
 	
+	public final static String CURRENT_USER = "_current_user"; 
+	
 	private int id;
 	
 	private String name;
 	
-	private int age;
+	private String password;
+	
+	private String email;
+	
+	private int type;
+	
+	private String status;
+	
+	private Date registerDate;
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password
+				+ ", email=" + email + ", type=" + type + ", status=" + status
+				+ ", registerDate=" + registerDate + "]";
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public int getId() {
 		return id;
@@ -29,17 +55,35 @@ public class User {
 		this.name = name;
 	}
 
-	public int getAge() {
-		return age;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age + "]";
+	public int getType() {
+		return type;
 	}
 
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
 }

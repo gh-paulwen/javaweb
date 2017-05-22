@@ -12,7 +12,6 @@ public class UserDaoTest {
 	public void testSave(){
 		User user = new User();
 		user.setName("Henry");
-		user.setAge(20);
 		userDao.save(user);
 	}
 	

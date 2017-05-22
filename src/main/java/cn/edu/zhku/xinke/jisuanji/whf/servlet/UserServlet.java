@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.edu.zhku.xinke.jisuanji.whf.dto.ModelAttribute;
 import cn.edu.zhku.xinke.jisuanji.whf.model.User;
 import cn.edu.zhku.xinke.jisuanji.whf.service.UserService;
 
 /**
- * temp
  * @author Paul
  * 
  * */
@@ -20,28 +20,62 @@ public class UserServlet extends BaseServlet{
 	
 	private UserService userService = UserService.getInstance();
 	
-	protected String save(HttpServletRequest req, HttpServletResponse resp)
+	/**
+	 * 登录
+	 * 
+	 * */
+	protected String login(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		//POST请求
+		String method = req.getMethod();
+		if(!"POST".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
 		String username = req.getParameter("username");
-		int age = Integer.valueOf(req.getParameter("age"));
-		System.out.println(username);
-		User user = new User();
-		user.setName(username);
-		user.setAge(age);
-		userService.save(user);
+		String password = req.getParameter("password");
 		
-		return null;
+		ModelAttribute ma = userService.login(username,password,req.getSession());
 		
+		return ma.getDestination();
 	}
 	
-	protected String get(HttpServletRequest req, HttpServletResponse resp)
+	/**
+	 * 注册
+	 * */
+	protected String register(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int id = Integer.valueOf(req.getParameter("id"));
-		User user = userService.get(id);
-		String message = "hello , " + user.getName();
-		req.setAttribute("message", message);
-		return "forward:message.jsp";
+		String method = req.getMethod();
+		if(!"POST".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
+		
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		String email = req.getParameter("email");
+		
+		User user = new User();
+		user.setName(username);
+		user.setPassword(password);
+		user.setEmail(email);
+		ModelAttribute ma = userService.register(user);
+		return ma.getDestination();
+	}
+	
+	/**
+	 * 获取个人信息
+	 * 
+	 * */
+	protected String getInfo(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
+		ModelAttribute ma = userService.checkInfo(req.getSession());
+		return ma.getDestination();
 	}
 	
 }
