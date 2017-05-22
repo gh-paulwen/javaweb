@@ -36,7 +36,7 @@ public class UserServlet extends BaseServlet{
 		String password = req.getParameter("password");
 		
 		ModelAttribute ma = userService.login(username,password,req.getSession());
-		
+		ma.pollute(req);
 		return ma.getDestination();
 	}
 	
@@ -60,6 +60,7 @@ public class UserServlet extends BaseServlet{
 		user.setPassword(password);
 		user.setEmail(email);
 		ModelAttribute ma = userService.register(user);
+		ma.pollute(req);
 		return ma.getDestination();
 	}
 	
@@ -75,6 +76,7 @@ public class UserServlet extends BaseServlet{
 			req.getRequestDispatcher("/input.jsp").forward(req,resp);
 		}
 		ModelAttribute ma = userService.checkInfo(req.getSession());
+		ma.pollute(req);
 		return ma.getDestination();
 	}
 	

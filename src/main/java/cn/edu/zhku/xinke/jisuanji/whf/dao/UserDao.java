@@ -11,7 +11,6 @@ import cn.edu.zhku.xinke.jisuanji.whf.util.TxConstructor;
 /**
  * @author Paul
  * 
- * temp
  * user dao
  * */
 public class UserDao {

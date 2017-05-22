@@ -40,5 +40,9 @@ public class ModelAttribute {
 			req.setAttribute(key, map.get(key));
 		}
 	}
+	
+	public Map<String,Object> get(){
+		return map;
+	}
 
 }

@@ -25,7 +25,7 @@ public abstract class BaseServlet extends HttpServlet{
 		 * */
 //		req = new EncodingRequestWrapper(req);
 		req.setCharacterEncoding("UTF-8");
-		
+		resp.setContentType("text/html;charset=UTF-8");
 		
 		/**
 		 * 得到method,利用反射调用对应方法
