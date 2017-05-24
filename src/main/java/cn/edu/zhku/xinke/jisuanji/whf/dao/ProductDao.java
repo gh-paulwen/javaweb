@@ -119,4 +119,10 @@ public class ProductDao {
 		JdbcAction action = new JdbcAction(sql,storeid);
 		return jdbcUtil.queryList(action, Product.class);
 	}
+	
+	public List<Product> getCollectProduct(int user){
+		String sql = "select * from product where id in (select product from collect where user = ?)";
+		JdbcAction action = new JdbcAction(sql,user);
+		return jdbcUtil.queryList(action, Product.class);
+	}
 }
