@@ -22,6 +22,14 @@
 		<servlet-name>categoryJsonServlet</servlet-name>
 		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.CategoryJsonServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>addressServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.AddressServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>storeServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.StoreServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>userServlet</servlet-name>
@@ -39,7 +47,14 @@
 		<servlet-name>categoryJsonServlet</servlet-name>
 		<url-pattern>/categoryJson</url-pattern>
 	</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>addressServlet</servlet-name>
+		<url-pattern>/address</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>storeServlet</servlet-name>
+		<url-pattern>/store</url-pattern>
+	</servlet-mapping>
 	
 	<display-name>java web</display-name>
 </web-app>
