@@ -30,6 +30,14 @@
 		<servlet-name>storeServlet</servlet-name>
 		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.StoreServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>userTypeJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.UserTypeJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>productServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.ProductServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>userServlet</servlet-name>
@@ -55,6 +63,15 @@
 		<servlet-name>storeServlet</servlet-name>
 		<url-pattern>/store</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>userTypeJsonServlet</servlet-name>
+		<url-pattern>/userTypeJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>productServlet</servlet-name>
+		<url-pattern>/product</url-pattern>
+	</servlet-mapping>
+	
 	
 	<display-name>java web</display-name>
 </web-app>
