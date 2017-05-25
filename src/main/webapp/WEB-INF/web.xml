@@ -47,6 +47,12 @@
 		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.UserTypeJsonServlet</servlet-class>
 	</servlet>
 	
+	<!-- upload -->
+	<servlet>
+		<servlet-name>fileServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.FileServlet</servlet-class>
+	</servlet>
+	
 	<!-- jsp-servlet mapping -->
 	<servlet-mapping>
 		<servlet-name>userServlet</servlet-name>
@@ -85,6 +91,12 @@
 	<servlet-mapping>
 		<servlet-name>categoryJsonServlet</servlet-name>
 		<url-pattern>/categoryJson</url-pattern>
+	</servlet-mapping>
+	
+	<!-- upload mapping -->
+	<servlet-mapping>
+		<servlet-name>fileServlet</servlet-name>
+		<url-pattern>/file</url-pattern>
 	</servlet-mapping>
 	
 	
