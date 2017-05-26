@@ -18,8 +18,8 @@ public class TxConstructor {
 		actions.add(action);
 	}
 	
-	public void commit(){
-		JDBC_UTIL.execute(actions);
+	public int commit(){
+		return JDBC_UTIL.execute(actions);
 	}
 
 }

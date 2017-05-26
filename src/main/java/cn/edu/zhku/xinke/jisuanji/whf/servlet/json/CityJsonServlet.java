@@ -1,4 +1,4 @@
-package cn.edu.zhku.xinke.jisuanji.whf.servlet;
+package cn.edu.zhku.xinke.jisuanji.whf.servlet.json;
 
 import java.io.IOException;
 
