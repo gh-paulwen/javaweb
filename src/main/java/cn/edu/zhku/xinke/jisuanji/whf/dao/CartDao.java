@@ -27,7 +27,7 @@ public class CartDao {
 	 * 保存商品到购物车
 	 */
 	public int save(Cart cart){
-		String sql="insert into cart values(?,?,?)";
+//		String sql="insert into cart values(?,?,?)";
 		//return jdbcUtil.execute(sql,cart.getUserId(),cart.getProductId(),cart.getCount());
 		return save(cart,null);
 	}
@@ -52,7 +52,7 @@ public class CartDao {
 	 * 从购物车删除商品
 	 */
 	public int delete(Cart cart){
-		String sql="delete from cart where userId=? and productId=?";
+//		String sql="delete from cart where userId=? and productId=?";
 		//return jdbcUtil.execute(sql, cart.getUserId(),cart.getProductId());
 		return delete(cart,null);
 	}
@@ -77,7 +77,7 @@ public class CartDao {
 	 * 更新购物车商品
 	 */
 	public int update(Cart cart){
-		String sql="update cart set count=? where userId=? and productId=?";
+//		String sql="update cart set count=? where userId=? and productId=?";
 		//return jdbcUtil.execute(sql, cart.getUserId(),cart.getProductId(),cart.getCount());
 		return update(cart,null);
 	}

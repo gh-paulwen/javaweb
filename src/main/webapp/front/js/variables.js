@@ -1,6 +1,6 @@
 var javaweb = {};
 
-javaweb.base = "/javaweb/";
+javaweb.base = "/javaweb";
 
 javaweb.AjaxParameter = function() {
     this.dataType = "json";

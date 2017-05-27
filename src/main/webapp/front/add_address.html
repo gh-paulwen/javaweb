@@ -4,13 +4,26 @@
 
 <head>
     <meta charset="utf-8">
-    <title>login</title>
+    <title>index</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
-    <link rel="stylesheet" type="text/css" href="css/reg_store.css">
+    <style>
+        #btn_save {
+            width: 100px;
+            padding: 12px;
+            color: white;
+            background-color: #008249;
+            border: 0;
+            border-radius: 3px;
+        }
+        
+        #btn_save:hover {
+            background-color: #009949;
+        }
+    </style>
 </head>
 
-<body style="background-image:url('img/login.jpg');background-size: 100%;background-repeat: no-repeat;">
+<body>
     <div id="divnav">
         <ul id="navleft">
             <li class="navitem"><a href="index.html">网站名</a></li>
@@ -25,27 +38,24 @@
             <li class="navitem"><a href="register.html">注册</a></li>
         </ul>
     </div>
-
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-xs-1 col-lg-7 col-md-7">
-            </div>
-            <div id="divreg" class="col-xs-10 col-lg-4 col-md-4">
-                <h4>商店注册,当前用户：<span id="info_name">未登录</span></h4>
-                <div><input id="input_store_name" type="text" class="form-control" placeholder="商店名称"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-xs-6">
-                        <select id="select_province" class="form-control">
-                        </select>
-                    </div>
-                    <div class="col-xs-6">
-                        <select id="select_city" class="form-control">
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <button id="btn_register">注册</button>
-                </div>
+            <div class="col-xs-5">
+                <h4>添加收获地址</h4>
+                <select id="select_province" class="form-control">
+                </select>
+                <h4></h4>
+                <select id="select_city" class="form-control">
+                </select>
+                <h4></h4>
+                <input id="input_verbose_address" type="text" class="form-control" placeholder="详细地址">
+                <h4></h4>
+                <input id="input_receiver_name" type="text" class="form-control" placeholder="收货人姓名">
+                <h4></h4>
+                <input id="input_receiver_phone" type="text" class="form-control" placeholder="收获人电话号码">
+                <h4></h4>
+                <button id="btn_save">保存</button>
+                <h4></h4>
             </div>
         </div>
     </div>
@@ -53,7 +63,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/variables.js"></script>
     <script type="text/javascript" src="js/province_city.js"></script>
-    <script type="text/javascript" src="js/reg_store.js"></script>
+    <script type="text/javascript" src="js/add_address.js"></script>
 </body>
 
 </html>

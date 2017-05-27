@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Address;
 import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcAction;
@@ -27,11 +28,13 @@ public class AddressDao {
 	
 	public int save(Address address , TxConstructor tc){
 		
-		String sql = "insert into address (region,verboseAddress,user) values (?,?,?)";
+		String sql = "insert into address (region,verboseAddress,user,receiverName,receiverPhone) values (?,?,?,?,?)";
 		Object[] params = new Object[]{
 				address.getRegion(),
 				address.getVerboseAddress(),
-				address.getUser()
+				address.getUser(),
+				address.getReceiverName(),
+				address.getReceiverPhone()
 		};
 		JdbcAction action = new JdbcAction(sql,params);
 		
@@ -65,10 +68,12 @@ public class AddressDao {
 	
 	public int update(Address address,TxConstructor tc){
 //		String sql = "update address set region=?,verboseAddress=?,user=? where id=?";
-		String sql = "update address set region=?,verboseAddress=? where id=? and user=?";
+		String sql = "update address set region=?,verboseAddress=?,receiverName=?,receiverPhone=? where id=? and user=?";
 		Object[] params = new Object[]{
 				address.getRegion(),
 				address.getVerboseAddress(),
+				address.getReceiverName(),
+				address.getReceiverPhone(),
 				address.getId(),
 				address.getUser()
 		};
@@ -85,6 +90,12 @@ public class AddressDao {
 		String sql = "select * from address where user = ?";
 		JdbcAction action = new JdbcAction(sql,user);
 		return jdbcUtil.queryList(action, Address.class);
+	}
+	
+	public List<Map<String,Object>> getVerboseByUser(int user){
+		String sql = "select address.id,concat(c2.name,' ',c1.name) as region,verboseAddress,receiverName,receiverPhone from address,city as c1,city as c2 where address.region=c1.id and c1.superCity=c2.id and user = ?";
+		JdbcAction action = new JdbcAction(sql,user);
+		return jdbcUtil.queryMap(action);
 	}
 	
 	public Address get(int id){

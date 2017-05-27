@@ -7,3 +7,8 @@
 .store:hover {
     box-shadow: 1px 1px 5px 1px #008249;
 }
+
+#t_address a {
+    text-decoration: none;
+    cursor: pointer;
+}

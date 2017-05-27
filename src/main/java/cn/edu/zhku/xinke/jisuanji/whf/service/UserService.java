@@ -96,6 +96,7 @@ public class UserService {
 		}
 		//登录成功
 		session.setAttribute(User.CURRENT_USER, userGet);
+		ma.setAttribute("message", "登录成功");
 		return ma;
 	}
 	

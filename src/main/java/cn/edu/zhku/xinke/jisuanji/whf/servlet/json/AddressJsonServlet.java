@@ -27,10 +27,14 @@ public class AddressJsonServlet extends JsonServlet{
 		
 		int region = Integer.valueOf(req.getParameter("region"));
 		String verboseAddress = req.getParameter("verboseAddress");
+		String receiverName = req.getParameter("receiverName");
+		String receiverPhone = req.getParameter("receiverPhone");
 		
 		Address address = new Address();
 		address.setRegion(region);
 		address.setVerboseAddress(verboseAddress);
+		address.setReceiverName(receiverName);
+		address.setReceiverPhone(receiverPhone);
 		
 		ModelAttribute ma = addressService.save(address, req.getSession());
 		return ma.get();
@@ -39,7 +43,7 @@ public class AddressJsonServlet extends JsonServlet{
 	protected Object delete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String method = req.getMethod();
-		if(!"POST".equalsIgnoreCase(method)){
+		if(!"GET".equalsIgnoreCase(method)){
 			req.setAttribute("message", "method : " + method + " not supported");
 			req.getRequestDispatcher("/input.jsp").forward(req, resp);
 			return null;
@@ -62,11 +66,15 @@ public class AddressJsonServlet extends JsonServlet{
 		int user = Integer.parseInt(req.getParameter("user"));
 		int region = Integer.parseInt(req.getParameter("region"));
 		String verbose = req.getParameter("verboseAddress");
+		String receiverName = req.getParameter("receiverName");
+		String receiverPhone = req.getParameter("receiverPhone");
 		
 		Address address = new Address();
+		address.setRegion(region);
+		address.setReceiverName(receiverName);
+		address.setReceiverPhone(receiverPhone);
 		address.setId(id);
 		address.setUser(user);
-		address.setRegion(region);
 		address.setVerboseAddress(verbose);
 		
 		ModelAttribute ma = addressService.update(address, req.getSession());
@@ -83,6 +91,19 @@ public class AddressJsonServlet extends JsonServlet{
 		}
 		
 		ModelAttribute ma = addressService.getByUser(req.getSession());
+		return ma.get();
+	}
+	
+	protected Object getVerbose(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+		
+		ModelAttribute ma = addressService.getVerboseByUser(req.getSession());
 		return ma.get();
 	}
 

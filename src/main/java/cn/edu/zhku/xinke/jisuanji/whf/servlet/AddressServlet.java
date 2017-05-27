@@ -27,10 +27,14 @@ public class AddressServlet extends BaseServlet{
 		
 		int region = Integer.valueOf(req.getParameter("region"));
 		String verboseAddress = req.getParameter("verboseAddress");
+		String receiverName = req.getParameter("receiverName");
+		String receiverPhone = req.getParameter("receiverPhone");
 		
 		Address address = new Address();
 		address.setRegion(region);
 		address.setVerboseAddress(verboseAddress);
+		address.setReceiverName(receiverName);
+		address.setReceiverPhone(receiverPhone);
 		
 		ModelAttribute ma = addressService.save(address, req.getSession());
 		ma.pollute(req);
@@ -67,10 +71,15 @@ public class AddressServlet extends BaseServlet{
 		int region = Integer.parseInt(req.getParameter("region"));
 		String verbose = req.getParameter("verboseAddress");
 		
+		String receiverName = req.getParameter("receiverName");
+		String receiverPhone = req.getParameter("receiverPhone");
+		
 		Address address = new Address();
+		address.setRegion(region);
+		address.setReceiverName(receiverName);
+		address.setReceiverPhone(receiverPhone);
 		address.setId(id);
 		address.setUser(user);
-		address.setRegion(region);
 		address.setVerboseAddress(verbose);
 		
 		ModelAttribute ma = addressService.update(address, req.getSession());
@@ -88,6 +97,20 @@ public class AddressServlet extends BaseServlet{
 		}
 		
 		ModelAttribute ma = addressService.getByUser(req.getSession());
+		ma.pollute(req);
+		return ma.getDestination();
+	}
+	
+	protected String getVerbose(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+		
+		ModelAttribute ma = addressService.getVerboseByUser(req.getSession());
 		ma.pollute(req);
 		return ma.getDestination();
 	}

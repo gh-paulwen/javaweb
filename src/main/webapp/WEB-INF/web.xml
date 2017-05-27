@@ -4,7 +4,7 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1" metadata-complete="true">
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>front/login.html</welcome-file>
 	</welcome-file-list>
 	
 	<!-- jsp-servlet -->
@@ -45,6 +45,30 @@
 	<servlet>
 		<servlet-name>userTypeJsonServlet</servlet-name>
 		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.UserTypeJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>addressJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.AddressJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>collectJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.CollectJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>orderJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.OrderJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>productJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.ProductJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>storeJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.StoreJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>userJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.UserJsonServlet</servlet-class>
 	</servlet>
 	
 	<!-- upload -->
@@ -92,6 +116,31 @@
 		<servlet-name>categoryJsonServlet</servlet-name>
 		<url-pattern>/categoryJson</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>addressJsonServlet</servlet-name>
+		<url-pattern>/addressJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>collectJsonServlet</servlet-name>
+		<url-pattern>/collectJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>orderJsonServlet</servlet-name>
+		<url-pattern>/orderJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>productJsonServlet</servlet-name>
+		<url-pattern>/productJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>storeJsonServlet</servlet-name>
+		<url-pattern>/storeJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>userJsonServlet</servlet-name>
+		<url-pattern>/userJson</url-pattern>
+	</servlet-mapping>
+	
 	
 	<!-- upload mapping -->
 	<servlet-mapping>

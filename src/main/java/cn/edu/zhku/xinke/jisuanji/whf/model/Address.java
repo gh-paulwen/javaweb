@@ -9,6 +9,26 @@ public class Address {
 	private String verboseAddress;
 
 	private int user;
+	
+	private String receiverName;
+	
+	private String receiverPhone;
+	
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+
+	public String getReceiverPhone() {
+		return receiverPhone;
+	}
+
+	public void setReceiverPhone(String receiverPhone) {
+		this.receiverPhone = receiverPhone;
+	}
 
 	public int getId() {
 		return id;
@@ -45,7 +65,9 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", region=" + region + ", verboseAddress="
-				+ verboseAddress + ", user=" + user + "]";
+				+ verboseAddress + ", user=" + user + ", receiverName="
+				+ receiverName + ", receiverPhone=" + receiverPhone + "]";
 	}
+
 
 }
