@@ -1,0 +1,12 @@
+#btn_next {
+    text-decoration: none;
+    border: 0;
+    border-radius: 3px;
+    background-color: #008249;
+    color: white;
+    padding: 12px;
+    width: 100px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}

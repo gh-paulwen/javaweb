@@ -1,0 +1,39 @@
+.address {
+    text-align: left;
+}
+
+.address p {
+    word-wrap: normal;
+}
+
+.address:hover {
+    border: 1px solid grey;
+}
+
+#btn_confirm {
+    width: 100px;
+    padding: 12px;
+    border: 0;
+    color: white;
+    background-color: #008249;
+    border-radius: 3px;
+}
+
+.orderDetail {
+    border-radius: 20px;
+}
+
+.orderDetail:hover {
+    border: 1px solid grey;
+}
+
+.orderDetail a {
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.orderDetail div {
+    text-align: center;
+}

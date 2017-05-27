@@ -1,0 +1,18 @@
+#divreg {
+    margin-top: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #008249;
+    padding: 50px;
+}
+
+#btn_register {
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: 8px;
+    background-color: #008249;
+    width: 100px;
+    margin-right: 20px;
+    margin-top: 20px;
+}

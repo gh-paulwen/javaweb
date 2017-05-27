@@ -1,0 +1,9 @@
+.store {
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.store:hover {
+    box-shadow: 1px 1px 5px 1px #008249;
+}

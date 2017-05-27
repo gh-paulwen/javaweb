@@ -1,0 +1,18 @@
+.collect {
+    border-radius: 20px;
+}
+
+.collect:hover {
+    border: 1px solid grey;
+}
+
+.collect a {
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.collect div {
+    text-align: center;
+}

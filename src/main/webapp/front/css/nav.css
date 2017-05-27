@@ -1,0 +1,33 @@
+#navleft,
+#navright {
+    list-style-type: none;
+    margin: 0;
+    display: inline;
+}
+
+#navright {
+    position: absolute;
+    right: 2%;
+}
+
+#divnav {
+    background-color: #008249;
+}
+
+.navitem {
+    display: inline-block;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+}
+
+.navitem:hover {
+    background-color: #009949;
+}
+
+.navitem a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 12px;
+}

@@ -1,0 +1,13 @@
+#btn_confirm {
+    width: 100px;
+    padding: 12px;
+    border-radius: 3px;
+    border: 0;
+    margin-top: 10px;
+    background-color: #008249;
+    color: white;
+}
+
+#btn_confirm :hover {
+    background-color: #009949;
+}

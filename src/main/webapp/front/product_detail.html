@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <style>
+        #btn_decrease,
+        #btn_add {
+            border-radius: 20%;
+            border: 0;
+            background-color: #008249;
+            color: white;
+        }
+        
+        #btn_buy,
+        #btn_cart {
+            border-radius: 3px;
+            width: 100px;
+            background-color: #008249;
+            border: 0;
+            padding: 12px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="divnav">
+        <ul id="navleft">
+            <li class="navitem"><a href="index.html">网站名</a></li>
+            <li class="navitem"><a href="my.html">我的Website</a></li>
+            <li class="navitem"><a href="order.html">我的订单</a></li>
+            <li class="navitem"><a href="collect.html">收藏夹</a></li>
+            <li class="navitem"><a href="cart.html">购物车</a></li>
+            <li class="navitem"><a href="reg_store.html">免费开店</a></li>
+        </ul>
+        <ul id="navright">
+            <li class="navitem"><a href="login.html">登录</a></li>
+            <li class="navitem"><a href="register.html">注册</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4" style="text-align:center;">
+                <img style="width:400px;" src="img/logo.png">
+            </div>
+            <div class="col-xs-8" style="padding:30px;">
+                <h4>商品名：Name</h4>
+                <h4>价格：100$</h4>
+                <h4>店铺：店铺名</h4>
+                <h4>分类：男装</h4>
+                <h4>上架日期：2017-05-22</h4>
+                <h4>商品描述：描述一下这个商品</h4>
+                <h4>数量：<button id="btn_decrease">-</button>&nbsp;&nbsp;&nbsp;<span id="count">1</span>&nbsp;&nbsp;&nbsp;<button id="btn_add">+</button></h4>
+                <button id="btn_buy">立即购买</button>
+                <button id="btn_cart">加入购物车</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/variables.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
+
+<html>

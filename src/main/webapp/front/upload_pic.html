@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="css/upload_pic.css">
+</head>
+
+<body>
+    <div id="divnav">
+        <ul id="navleft">
+            <li class="navitem"><a href="index.html">网站名</a></li>
+            <li class="navitem"><a href="my.html">我的Website</a></li>
+            <li class="navitem"><a href="order.html">我的订单</a></li>
+            <li class="navitem"><a href="collect.html">收藏夹</a></li>
+            <li class="navitem"><a href="cart.html">购物车</a></li>
+            <li class="navitem"><a href="reg_store.html">免费开店</a></li>
+        </ul>
+        <ul id="navright">
+            <li class="navitem"><a href="login.html">登录</a></li>
+            <li class="navitem"><a href="register.html">注册</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div style="height:40px;"></div>
+        <div class="row">
+            <div class="col-xs-4" id="divupload">
+                <h4>请选择要作为商品封面的图片</h4>
+                <form id="uploadForm" name="uploadForm" type="POST" enctype="multipart/form-data">
+                    <input type="file" id="file" class="form-control">
+                </form>
+            </div>
+            <div class="col-xs-8" style="min-height: 300px;">
+                <h4>预览</h4>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img style="width:240px;" src="img/logo.png">
+                    </div>
+                    <div class="col-xs-8">
+                        <img style="width:480px;" src="img/logo.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2">
+                <button id="btn_confirm">确认</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/variables.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
+
+<html>

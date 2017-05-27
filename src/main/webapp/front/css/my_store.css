@@ -1,0 +1,24 @@
+.productdiv {
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.productdiv:hover {
+    box-shadow: 1px 1px 5px 1px #008249;
+}
+
+.productdiv a {
+    text-decoration: none;
+}
+
+#btn_add_product {
+    width: 100px;
+    border: 0;
+    padding: 12px;
+    color: white;
+    background-color: #008249;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}

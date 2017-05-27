@@ -1,0 +1,18 @@
+.order {
+    border-radius: 20px;
+}
+
+.order:hover {
+    border: 1px solid grey;
+}
+
+.order a {
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.order div {
+    text-align: center;
+}
