@@ -1,4 +1,5 @@
-#btn_confirm {
+#btn_confirm,
+#upload {
     width: 100px;
     padding: 12px;
     border-radius: 3px;
@@ -8,6 +9,7 @@
     color: white;
 }
 
-#btn_confirm :hover {
+#btn_confirm :hover,
+#btn_upload:hover {
     background-color: #009949;
 }

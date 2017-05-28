@@ -17,13 +17,28 @@
         }
         
         #btn_buy,
-        #btn_cart {
+        #btn_cart,
+        #btn_collect {
             border-radius: 3px;
             width: 100px;
             background-color: #008249;
             border: 0;
             padding: 12px;
             color: white;
+        }
+        
+        #btn_buy:hover,
+        #btn_cart:hover,
+        #btn_collect:hover {
+            background-color: #009949;
+        }
+        
+        #input_count {
+            text-align: center;
+            width: 50px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid gray;
         }
     </style>
 </head>
@@ -44,29 +59,30 @@
         </ul>
     </div>
     <div class="container">
+        <div style="height:50px;"></div>
         <div class="row">
             <div class="col-xs-4" style="text-align:center;">
-                <img style="width:400px;" src="img/logo.png">
+                <img id="img_pic" style="width:400px;" src="img/logo.png">
             </div>
-            <div class="col-xs-8" style="padding:30px;">
-                <h4>商品名：Name</h4>
-                <h4>价格：100$</h4>
-                <h4>店铺：店铺名</h4>
-                <h4>分类：男装</h4>
-                <h4>上架日期：2017-05-22</h4>
-                <h4>商品描述：描述一下这个商品</h4>
-                <h4>数量：<button id="btn_decrease">-</button>&nbsp;&nbsp;&nbsp;<span id="count">1</span>&nbsp;&nbsp;&nbsp;<button id="btn_add">+</button></h4>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-7" style="padding:30px;">
+                <h4>商品名：<span id="info_name"></span></h4>
+                <h4>跳楼价：<span id="info_price"></span></h4>
+                <h4>店铺：<span id="info_store"></span></h4>
+                <h4>分类：<span id="info_category"></span></h4>
+                <h4>上架日期：<span id="info_create_date"></span></h4>
+                <h4>商品描述：<span id="info_description"></span></h4>
+                <h4>数量：<button id="btn_decrease">-</button>&nbsp;&nbsp;&nbsp;<input type="text" value="1" id="input_count">&nbsp;&nbsp;&nbsp;<button id="btn_add">+</button></h4>
                 <button id="btn_buy">立即购买</button>
                 <button id="btn_cart">加入购物车</button>
+                <button id="btn_collect">加入收藏</button>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/variables.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/product_detail.js"></script>
 </body>
 
 </html>
-
-<html>

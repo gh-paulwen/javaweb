@@ -61,7 +61,7 @@ public class FileServlet extends BaseServlet {
 					
 				}else {
 					String uuid = UUID.randomUUID().toString();
-					fileName = uuid +fileItem.getName();
+					fileName = uuid + fileItem.getName();
 					fileItem.write(new File(uploadDir,fileName));
 					break;
 				}

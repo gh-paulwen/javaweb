@@ -13,6 +13,7 @@ import java.util.Properties;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import cn.edu.zhku.xinke.jisuanji.whf.dao.handler.ObjectHandler;
@@ -207,7 +208,7 @@ public class JdbcUtil {
 		return list;
 	}
 	
-	public List<Map<String,Object>> queryMap(JdbcAction action){
+	public List<Map<String,Object>> queryMapList(JdbcAction action){
 		List<Map<String,Object>> list = Collections.emptyList();
 		try {
 			list = queryRunner.query(action.getSql(), new MapListHandler(),action.getParams());
@@ -215,5 +216,15 @@ public class JdbcUtil {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public Map<String,Object> queryMap(JdbcAction action){
+		Map<String,Object> map = null;
+		try {
+			map = queryRunner.query(action.getSql(), new MapHandler(), action.getParams());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
 	}
 }

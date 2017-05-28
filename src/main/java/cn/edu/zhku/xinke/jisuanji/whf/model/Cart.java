@@ -5,31 +5,26 @@ package cn.edu.zhku.xinke.jisuanji.whf.model;
  * */
 public class Cart {
 	
-	private int userId;
+	private int user;
 	
-	private int productId;
+	private int product;
 	
 	private int count;
 
-	@Override
-	public String toString() {
-		return "Cart [userId=" + userId + ", productId=" + productId + ", count=" + count + "]";
+	public int getUser() {
+		return user;
 	}
 
-	public int getUserId() {
-		return userId;
+	public void setUser(int user) {
+		this.user = user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public int getProduct() {
+		return product;
 	}
 
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProduct(int product) {
+		this.product = product;
 	}
 
 	public int getCount() {
@@ -39,6 +34,13 @@ public class Cart {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+	@Override
+	public String toString() {
+		return "Cart [user=" + user + ", product=" + product + ", count="
+				+ count + "]";
+	}
+	
 	
 	
 }

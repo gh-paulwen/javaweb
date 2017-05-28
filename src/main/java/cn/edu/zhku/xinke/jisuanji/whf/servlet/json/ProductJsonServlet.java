@@ -176,5 +176,34 @@ public class ProductJsonServlet extends JsonServlet {
 		ModelAttribute ma = productService.getByStore(store);
 		return ma.get();
 	}
+	
+	protected Object connectPic(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String method = req.getMethod();
+		if (!"GET".equalsIgnoreCase(method)) {
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+		int product = Integer.parseInt(req.getParameter("product"));
+		String pic = req.getParameter("pic");
+		ModelAttribute ma = productService.connectPic(product, pic, req.getSession());
+		return ma.get();
+	}
+	
+	protected Object getVerbose(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String method = req.getMethod();
+		if (!"GET".equalsIgnoreCase(method)) {
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+		int id = Integer.parseInt(req.getParameter("id"));
+		ModelAttribute ma = productService.getVerbose(id);
+		return ma.get();
+	}
 
 }

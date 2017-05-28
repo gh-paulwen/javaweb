@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var select_city = $("#select_city");
+    var select_province = $("#select_province");
     var loadCity = function(province) {
         var apCity = javaweb.createAP("/city?method=getCity&province=" + province);
         apCity.success = function(json) {
@@ -15,11 +17,9 @@ $(document).ready(function() {
 
     //load province and city
     var apProvince = javaweb.createAP("/city?method=getProvince");
-    var select_province = $("#select_province");
     select_province.change(function() {
         loadCity(select_province.val());
     });
-    var select_city = $("#select_city");
     apProvince.success = function(json) {
         var provinces = json.listProvince;
         var first = provinces[0].id;

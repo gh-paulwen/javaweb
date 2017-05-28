@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -53,9 +54,16 @@ public class ProductService {
 		}
 
 		if (ownstore) {
-			int res = productDao.save(product);
+			int res = 0;
+			int id = 0;
+			synchronized(this){
+				id = Integer.parseInt(String.valueOf(productDao.getAvailableId()));
+				product.setId(id);
+				res = productDao.save(product);
+			}
 			if (res > 0) {
 				ma.setAttribute("message", "添加商品成功");
+				ma.setAttribute("productid", id);
 			} else {
 				ma.setAttribute("message", "添加商品失败");
 			}
@@ -183,6 +191,45 @@ public class ProductService {
 		ModelAttribute ma = new ModelAttribute("forward:product_list.jsp");
 		List<Product> list = productDao.getByStore(store);
 		ma.setAttribute("listProduct", list);
+		return ma;
+	}
+	
+	public ModelAttribute connectPic(int product,String pic,HttpSession session){
+		ModelAttribute ma = new ModelAttribute("forward:message.jsp");
+
+		User user = (User) session.getAttribute(User.CURRENT_USER);
+		if (user == null) {
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		
+		int result =  Integer.parseInt(String.valueOf(productDao.checkProductUser(product,user.getId())));
+		int affected = 0;
+		if(result > 0){
+			synchronized (this){
+				Product productGet = productDao.getById(product);
+				productGet.setPic(pic);
+				affected = productDao.update(productGet);
+			}
+			
+		}else {
+			ma.setAttribute("message", "无操作权限");
+		}
+		
+		if(affected > 0){
+			ma.setAttribute("message", "上传图片成功");
+		}else {
+			ma.setAttribute("message", "上传图片失败");
+		}
+		
+		return ma;
+	}
+	
+	public ModelAttribute getVerbose (int id){
+		ModelAttribute ma = new ModelAttribute("forward:product.jsp");
+		
+		Map<String,Object> product = productDao.getVerbose(id);
+		ma.setAttribute("product", product);
 		return ma;
 	}
 

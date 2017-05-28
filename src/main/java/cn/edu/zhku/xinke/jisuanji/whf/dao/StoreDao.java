@@ -2,6 +2,7 @@ package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Store;
 import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcAction;
@@ -94,6 +95,12 @@ public class StoreDao {
 		String sql = "select * from store where name like '%" + name +"%'" ;
 		JdbcAction action = new JdbcAction(sql);
 		return jdbcUtil.queryList(action, Store.class);
+	}
+	
+	public Map<String,Object> getVerboseById(int id){
+		String sql = "select trim(u.`name`) username,s.id,trim(s.`name`) storename,s.registerDate,s.pic,concat(c2.name , ' ' ,c1.name) as 'region' from user as u,store as s, city as c1 , city as c2 where s.`owner` = u.id and c1.superCity = c2.id and s.region = c1.id and s.id = ?";
+		JdbcAction action = new JdbcAction(sql,id);
+		return jdbcUtil.queryMapList(action).get(0);
 	}
 
 }

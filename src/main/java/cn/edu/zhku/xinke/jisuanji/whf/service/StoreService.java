@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -120,6 +121,14 @@ public class StoreService {
 		ModelAttribute ma = new ModelAttribute("forward:store_list.jsp");
 		List<Store> list = storeDao.getByName(name);
 		ma.setAttribute("listStore", list);
+		return ma;
+	}
+	
+	
+	public ModelAttribute getVerbose(int id){
+		ModelAttribute ma = new ModelAttribute("forward:store.jsp");
+		Map<String,Object> store = storeDao.getVerboseById(id);
+		ma.setAttribute("store", store);
 		return ma;
 	}
 

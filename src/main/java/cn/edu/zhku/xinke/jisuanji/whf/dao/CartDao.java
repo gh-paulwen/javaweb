@@ -36,9 +36,9 @@ public class CartDao {
 	 * 事务版的保存商品购物车
 	 */
 	public int save(Cart cart,TxConstructor tc){
-		String sql="insert into cart values(?,?,?)";
+		String sql="insert into cart(user,product,count) values(?,?,?)";
 		Object[] params=new Object[]{
-				cart.getUserId(),cart.getProductId(),cart.getCount()
+				cart.getUser(),cart.getProduct(),cart.getCount()
 		};
 		JdbcAction action =new JdbcAction(sql,params);
 		if(tc!=null){
@@ -61,9 +61,9 @@ public class CartDao {
 	 * 从购物车删除商品的事务版
 	 */
 	public int delete(Cart cart,TxConstructor tc){
-		String sql="delete from cart where userId=? and productId=?";
+		String sql="delete from cart where user=? and product=?";
 		Object[] params=new Object[]{
-				cart.getUserId(),cart.getProductId()
+				cart.getUser(),cart.getProduct()
 		};
 		JdbcAction action=new JdbcAction(sql,params);
 		if(tc!=null){
@@ -86,9 +86,9 @@ public class CartDao {
 	 * 更新购物车商品的事务版
 	 */
 	public int update(Cart cart,TxConstructor tc){
-		String sql="update cart set count=? where userId=? and productId=?";
+		String sql="update cart set count=? where user=? and product=?";
 		Object[] params=new Object[]{
-				cart.getUserId(),cart.getProductId(),cart.getCount()
+				cart.getUser(),cart.getProduct(),cart.getCount()
 		};
 		JdbcAction action=new JdbcAction(sql,params);
 		if(tc!=null){
@@ -103,7 +103,7 @@ public class CartDao {
 	 */
 	
 	public List<Cart> getByUser(int id){
-		String sql="select * from cart where id=?";
+		String sql="select * from cart where user=?";
 		Object[] params=new Object[]{id};
 		JdbcAction action=new JdbcAction(sql,params);
 		return jdbcUtil.queryList(action,Cart.class);

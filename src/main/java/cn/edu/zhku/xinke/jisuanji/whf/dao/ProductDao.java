@@ -2,6 +2,7 @@ package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Product;
 import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcAction;
@@ -124,5 +125,23 @@ public class ProductDao {
 		String sql = "select * from product where id in (select product from collect where user = ?)";
 		JdbcAction action = new JdbcAction(sql,user);
 		return jdbcUtil.queryList(action, Product.class);
+	}
+	
+	public long getAvailableId(){
+		String sql = "select max(id) + 1 as id from product";
+		JdbcAction action = new JdbcAction(sql);
+		return (long)jdbcUtil.queryPrimitive(action);
+	}
+	
+	public long checkProductUser(int product,int user ){
+		String sql = "select count(*) from product,store,user where product.id=? and user.id = ? and product.store = store.id and store.`owner` = user.id";
+		JdbcAction action = new JdbcAction(sql,product,user);
+		return (long) jdbcUtil.queryPrimitive(action);
+	}
+	
+	public Map<String,Object> getVerbose(int id){
+		String sql = "select product.id,trim(product.name) as productname,product.price,product.pic,product.description,product.createDate,trim(store.name) as storename,concat(category.name,' ' ,seccategory.name) as category from product , store , category , seccategory where product.store = store.id and product.secCategory = seccategory.id and seccategory.category = category.id and product.id = ?";
+		JdbcAction action = new JdbcAction(sql,id);
+		return jdbcUtil.queryMap(action);
 	}
 }

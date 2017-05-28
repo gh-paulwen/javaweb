@@ -29,6 +29,7 @@ public class CartService {
 			ma.setAttribute("message", "未登录");
 			return ma;
 		}
+		cart.setUser(curUser.getId());
 		cartDao.save(cart);
 		ma.setAttribute("message", "加入购物车成功");
 		return ma;
@@ -45,6 +46,7 @@ public class CartService {
 			ma.setAttribute("message", "未登录");
 			return ma;
 		}
+		cart.setUser(curUser.getId());
 		cartDao.delete(cart);
 		ma.setAttribute("message", "删除成功");
 		return ma;
@@ -61,6 +63,7 @@ public class CartService {
 			ma.setAttribute("message", "未登录");
 			return ma;
 		}
+		cart.setUser(curUser.getId());
 		cartDao.update(cart);
 		return ma;
 	}
@@ -77,10 +80,6 @@ public class CartService {
 			return ma;
 		}
 		List<Cart> list=cartDao.getByUser(id);
-		if(list!=null){
-			ma.setAttribute("message", "您的购物车是空的，请添加商品");
-			return ma;
-		}
 		ma.setAttribute("listCart", list);
 		return ma;
 	}

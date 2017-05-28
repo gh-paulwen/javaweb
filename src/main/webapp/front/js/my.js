@@ -43,3 +43,32 @@ $(document).ready(function() {
     $.ajax(apInfo);
     $.ajax(apAddress);
 });
+
+
+$(function() {
+    var apStore = javaweb.createAP("/storeJson?method=getByUser");
+    apStore.success = function(json) {
+        var stores = json.listStore;
+        var div_stores = $("#div_stores");
+        for (var i = 0; i < stores.length; i++) {
+            var store = stores[i];
+            var div = $(document.createElement("div"));
+            div.click((function(sid) {
+                return function() {
+                    location.href = "my_store.html?sid=" + sid;
+                };
+            })(store.id));
+            div.addClass("col-xs-3 store");
+            var img = $(document.createElement("img"));
+            img.attr("src", "img/logo.png");
+            img.attr("style", "width:240px;");
+            var h3 = $(document.createElement("h3"));
+            h3.append(store.name);
+            div.append(img);
+            div.append(h3);
+            div_stores.append(div);
+            div_stores.append("<div class='col-xs-1'></div>");
+        }
+    };
+    $.ajax(apStore);
+});

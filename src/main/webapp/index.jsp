@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>index</title>
+<script type="text/javascript">
+window.location.href=  "front/login.html";
+</script>
 </head>
 <%
 	String base = request.getContextPath();

@@ -18,7 +18,7 @@ public class CollectJsonServlet extends JsonServlet{
 	protected Object collect(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String method = req.getMethod();
-		if(!"GET".equalsIgnoreCase(method)){
+		if(!"POST".equalsIgnoreCase(method)){
 			req.setAttribute("message", "method : " + method + " not supported");
 			req.getRequestDispatcher("/input.jsp").forward(req, resp);
 			return null;

@@ -109,5 +109,22 @@ public class StoreJsonServlet extends JsonServlet{
 		ModelAttribute ma = storeService.getByName(name);
 		return ma.get();
 	}
+	
+	protected Object getVerbose(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if (!"GET".equalsIgnoreCase(method)) {
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+
+		int id = Integer.parseInt(req.getParameter("id"));
+
+		ModelAttribute ma = storeService.getVerbose(id);
+		return ma.get();
+	}
+	
+	
 
 }

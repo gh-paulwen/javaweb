@@ -4,7 +4,7 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1" metadata-complete="true">
 	<welcome-file-list>
-		<welcome-file>front/login.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<!-- jsp-servlet -->
@@ -69,6 +69,10 @@
 	<servlet>
 		<servlet-name>userJsonServlet</servlet-name>
 		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.UserJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>cartJsonServlet</servlet-name>
+		<servlet-class>cn.edu.zhku.xinke.jisuanji.whf.servlet.json.CartJsonServlet</servlet-class>
 	</servlet>
 	
 	<!-- upload -->
@@ -139,6 +143,10 @@
 	<servlet-mapping>
 		<servlet-name>userJsonServlet</servlet-name>
 		<url-pattern>/userJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>cartJsonServlet</servlet-name>
+		<url-pattern>/cartJson</url-pattern>
 	</servlet-mapping>
 	
 	

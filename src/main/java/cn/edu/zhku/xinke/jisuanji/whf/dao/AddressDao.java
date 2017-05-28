@@ -95,7 +95,7 @@ public class AddressDao {
 	public List<Map<String,Object>> getVerboseByUser(int user){
 		String sql = "select address.id,concat(c2.name,' ',c1.name) as region,verboseAddress,receiverName,receiverPhone from address,city as c1,city as c2 where address.region=c1.id and c1.superCity=c2.id and user = ?";
 		JdbcAction action = new JdbcAction(sql,user);
-		return jdbcUtil.queryMap(action);
+		return jdbcUtil.queryMapList(action);
 	}
 	
 	public Address get(int id){

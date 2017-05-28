@@ -26,13 +26,11 @@ public class CartServlet extends BaseServlet{
 			req.setAttribute("message", "Method : " + method + " is not supported");
 			req.getRequestDispatcher("/input.jsp").forward(req,resp);
 		}
-		int userId=Integer.parseInt(req.getParameter("userId"));
-		int productId=Integer.parseInt(req.getParameter("productId"));
-		int count=Integer.parseInt(req.getParameter("countShop"));
+		int product=Integer.parseInt(req.getParameter("product"));
+		int count=Integer.parseInt(req.getParameter("count"));
 		
 		Cart cart=new Cart();
-		cart.setUserId(userId);
-		cart.setProductId(productId);
+		cart.setProduct(product);
 		cart.setCount(count);
 		ModelAttribute ma=cartService.save(cart, req.getSession());
 		ma.pollute(req);
@@ -49,13 +47,13 @@ public class CartServlet extends BaseServlet{
 			req.setAttribute("message", "Method : " + method + " is not supported");
 			req.getRequestDispatcher("/input.jsp").forward(req,resp);
 		}
-		int userId=Integer.parseInt(req.getParameter("userId"));
-		int productId=Integer.parseInt(req.getParameter("productId"));
-		int count=Integer.parseInt(req.getParameter("countShop"));
+		int user=Integer.parseInt(req.getParameter("user"));
+		int product=Integer.parseInt(req.getParameter("product"));
+		int count=Integer.parseInt(req.getParameter("count"));
 		
 		Cart cart=new Cart();
-		cart.setUserId(userId);
-		cart.setProductId(productId);
+		cart.setUser(user);
+		cart.setProduct(product);
 		cart.setCount(count);
 		ModelAttribute ma=cartService.delete(cart, req.getSession());
 		ma.pollute(req);
@@ -72,13 +70,11 @@ public class CartServlet extends BaseServlet{
 			req.setAttribute("message", "Method : " + method + " is not supported");
 			req.getRequestDispatcher("/input.jsp").forward(req,resp);
 		}
-		int userId=Integer.parseInt(req.getParameter("userId"));
-		int productId=Integer.parseInt(req.getParameter("productId"));
+		int product=Integer.parseInt(req.getParameter("product"));
 		int count=Integer.parseInt(req.getParameter("countShop"));
 		
 		Cart cart=new Cart();
-		cart.setUserId(userId);
-		cart.setProductId(productId);
+		cart.setProduct(product);
 		cart.setCount(count);
 		ModelAttribute ma=cartService.update(cart, req.getSession());
 		ma.pollute(req);
