@@ -55,4 +55,17 @@ public class CollectJsonServlet extends JsonServlet{
 		ModelAttribute ma = collectService.getByUser(req.getSession());
 		return ma.get();
 	}
+	
+	protected Object getVerbose(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+		
+		ModelAttribute ma = collectService.getVerboseByUser(req.getSession());
+		return ma.get();
+	}
 }

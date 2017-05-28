@@ -5,6 +5,7 @@ import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcUtil;
 import cn.edu.zhku.xinke.jisuanji.whf.util.TxConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Cart;
 
@@ -107,5 +108,12 @@ public class CartDao {
 		Object[] params=new Object[]{id};
 		JdbcAction action=new JdbcAction(sql,params);
 		return jdbcUtil.queryList(action,Cart.class);
+	}
+	
+	public List<Map<String,Object>> getVerboseById(int id){
+		String sql = "select * from cart , product where cart.product = product.id and cart.user = ?";
+		
+		JdbcAction action = new JdbcAction(sql,id);
+		return jdbcUtil.queryMapList(action);
 	}
 }

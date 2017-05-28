@@ -85,7 +85,7 @@ public class CartJsonServlet extends JsonServlet {
 	public Object displayCart(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String method = req.getMethod();
-		if (!"POST".equalsIgnoreCase(method)) {
+		if (!"GET".equalsIgnoreCase(method)) {
 			req.setAttribute("message", "Method : " + method
 					+ " is not supported");
 			req.getRequestDispatcher("/input.jsp").forward(req, resp);
@@ -93,6 +93,19 @@ public class CartJsonServlet extends JsonServlet {
 		int userId = Integer.parseInt(req.getParameter("userId"));
 
 		ModelAttribute ma = cartService.getByUser(userId, req.getSession());
+		return ma.get();
+	}
+	
+	public Object getVerbose(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if (!"GET".equalsIgnoreCase(method)) {
+			req.setAttribute("message", "Method : " + method
+					+ " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+		}
+
+		ModelAttribute ma = cartService.getVerbose(req.getSession());
 		return ma.get();
 	}
 

@@ -25,8 +25,9 @@ public class OrderDao {
 	}
 	
 	public int save(Order order,TxConstructor tc){
-		String sql = "insert into order (user,store,address,createDate,status) values (?,?,?,?,?)";
+		String sql = "insert into `order`(id,user,store,address,createDate,status) values (?,?,?,?,?,?)";
 		Object[] params = new Object[]{
+				order.getId(),
 				order.getUser(),
 				order.getStore(),
 				order.getAddress(),
@@ -46,7 +47,7 @@ public class OrderDao {
 	}
 	
 	public int update(Order order,TxConstructor tc){
-		String sql = "update order set status = ? where id=?";
+		String sql = "update `order` set status = ? where id=?";
 		Object[] params = new Object[]{
 				order.getStatus(),order.getId()
 		};
@@ -59,15 +60,23 @@ public class OrderDao {
 	}
 	
 	public List<Order> getByCustomer(int cust){
-		String sql = "select * from order where user = ? order by createDate desc";
+		String sql = "select * from `order` where user = ? order by createDate desc";
 		JdbcAction action = new JdbcAction(sql,cust);
 		return jdbcUtil.queryList(action, Order.class);
 	}
 	
 	public List<Order> getByStore(int store){
-		String sql = "select * from order where store = ? order by createDate desc";
+		String sql = "select * from `order` where store = ? order by createDate desc";
 		JdbcAction action = new JdbcAction(sql,store);
 		return jdbcUtil.queryList(action, Order.class);
+	}
+	
+	public int getAvailableId(){
+		String sql = "select max(id) + 1 as id from `order`";
+		JdbcAction action = new JdbcAction(sql);
+		Object res =  jdbcUtil.queryPrimitive(action);
+		long id = res == null ? 1l : (long) res;
+		return Integer.parseInt(String.valueOf(id));
 	}
 
 }

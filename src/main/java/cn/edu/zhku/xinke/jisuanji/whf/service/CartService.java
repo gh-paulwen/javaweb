@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -81,6 +82,19 @@ public class CartService {
 		}
 		List<Cart> list=cartDao.getByUser(id);
 		ma.setAttribute("listCart", list);
+		return ma;
+	}
+	
+	public ModelAttribute getVerbose(HttpSession session){
+		ModelAttribute ma = new ModelAttribute("forwar:cart.jsp");
+		User curUser = (User) session.getAttribute(User.CURRENT_USER);
+		if(curUser == null){
+			ma.setDestination("forward:message.jsp");
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		List<Map<String,Object>> list = cartDao.getVerboseById(curUser.getId());
+		ma.setAttribute("listVerbose", list);
 		return ma;
 	}
 }

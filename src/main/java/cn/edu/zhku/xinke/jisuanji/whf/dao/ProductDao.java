@@ -26,8 +26,9 @@ public class ProductDao {
 	}
 	
 	public int save(Product product,TxConstructor tc){
-		String sql = "insert into product (name,price,description,store,secCategory,createDate) values (?,?,?,?,?,?)";
+		String sql = "insert into product (id,name,price,description,store,secCategory,createDate) values (?,?,?,?,?,?,?)";
 		Object[] params = new Object[]{
+				product.getId(),
 				product.getName(),
 				product.getPrice(),
 				product.getDescription(),
@@ -140,7 +141,7 @@ public class ProductDao {
 	}
 	
 	public Map<String,Object> getVerbose(int id){
-		String sql = "select product.id,trim(product.name) as productname,product.price,product.pic,product.description,product.createDate,trim(store.name) as storename,concat(category.name,' ' ,seccategory.name) as category from product , store , category , seccategory where product.store = store.id and product.secCategory = seccategory.id and seccategory.category = category.id and product.id = ?";
+		String sql = "select trim(product.id) as id,trim(product.name) as productname,product.price,product.pic,product.description,product.createDate,trim(store.id) as storeid,trim(store.name) as storename,concat(category.name,' ' ,seccategory.name) as category from product , store , category , seccategory where product.store = store.id and product.secCategory = seccategory.id and seccategory.category = category.id and product.id = ?";
 		JdbcAction action = new JdbcAction(sql,id);
 		return jdbcUtil.queryMap(action);
 	}

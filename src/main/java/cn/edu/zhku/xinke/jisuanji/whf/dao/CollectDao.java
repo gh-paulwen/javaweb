@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Collect;
 import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcAction;
@@ -64,6 +65,12 @@ public class CollectDao {
 		String sql = "select * from collect where user = ?";
 		JdbcAction action = new JdbcAction(sql,user);
 		return jdbcUtil.queryList(action, Collect.class);
+	}
+	
+	public List<Map<String,Object>> getVerboseByUser(int user){
+		String sql = "select * from collect , product where collect.product = product.id and collect.user = ?";
+		JdbcAction action = new JdbcAction(sql,user);
+		return jdbcUtil.queryMapList(action);
 	}
 	
 }

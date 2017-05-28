@@ -1,5 +1,7 @@
 .address {
     text-align: left;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .address p {

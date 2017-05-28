@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -76,6 +77,19 @@ public class CollectService {
 		}
 		List<Product> list = productDao.getCollectProduct(curUser.getId());
 		ma.setAttribute("listCollectProduct", list);
+		return ma;
+	}
+	
+	public ModelAttribute getVerboseByUser(HttpSession session){
+		ModelAttribute ma = new ModelAttribute("forward:collect.jsp");
+		User curUser = (User) session.getAttribute(User.CURRENT_USER);
+		if (curUser == null) {
+			ma.setDestination("forward:message.jsp");
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		List<Map<String,Object>> list = collectDao.getVerboseByUser(curUser.getId());
+		ma.setAttribute("listVerbose", list);
 		return ma;
 	}
 

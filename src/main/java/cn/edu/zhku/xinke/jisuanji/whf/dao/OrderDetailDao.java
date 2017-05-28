@@ -24,7 +24,7 @@ public class OrderDetailDao {
 	}
 
 	public int save(OrderDetail od, TxConstructor tc) {
-		String sql = "insert into orderdetail (order,product,count) values (?,?,?)";
+		String sql = "insert into orderdetail (`order`,product,count) values (?,?,?)";
 		Object[] params = new Object[]{
 				od.getOrder(),
 				od.getProduct(),
@@ -41,7 +41,7 @@ public class OrderDetailDao {
 	}
 	
 	public List<OrderDetail> getByOrder(int order){
-		String sql = "select * from orderDetail where order = ?";
+		String sql = "select * from orderDetail where `order` = ?";
 		JdbcAction action = new JdbcAction(sql,order);
 		return jdbcUtil.queryList(action, OrderDetail.class);
 	}
