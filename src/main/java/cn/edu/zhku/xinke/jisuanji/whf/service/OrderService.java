@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -225,6 +226,62 @@ public class OrderService {
 
 		return ma;
 
+	}
+	
+	public ModelAttribute getVerboseByCustomer (HttpSession session){
+		ModelAttribute ma = new ModelAttribute();
+		User curUser = (User) session.getAttribute(User.CURRENT_USER);
+
+		if (curUser == null) {
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		List<Map<String,Object>> listEventually = new ArrayList<>();
+		List<Map<String,Object>> list = orderDao.getVerboseListByCustomer(curUser.getId());
+		for(Map<String,Object> map :list){
+			int id = (int) map.get("id");
+			List<Map<String,Object>> ods = orderDetailDao.getVerboseByOrder(id);
+			Map<String,Object> eventually = new HashMap<>();
+			eventually.put("order", map);
+			eventually.put("ods", ods);
+			listEventually.add(eventually);
+		}
+		ma.setAttribute("listOrder", listEventually);
+		return ma;
+	}
+	
+	public ModelAttribute getVerboseByStore (int storeid,HttpSession session){
+		ModelAttribute ma = new ModelAttribute();
+		User curUser = (User) session.getAttribute(User.CURRENT_USER);
+
+		if (curUser == null) {
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		List<Store> listStore = storeDao.getByUser(curUser.getId());
+		boolean canread = false;
+		for(Store store:listStore){
+			if(store.getId() == storeid){
+				canread = true;
+				break;
+			}
+		}
+		if(!canread) {
+			ma.setAttribute("message", "无访问权限");
+			return ma;
+		}
+		List<Map<String,Object>> listEventually = new ArrayList<>();
+		List<Map<String,Object>> list = orderDao.getVerboseListByStore(storeid);
+		for(Map<String,Object> map :list){
+			int id = (int) map.get("id");
+			List<Map<String,Object>> ods = orderDetailDao.getVerboseByOrder(id);
+			Map<String,Object> eventually = new HashMap<>();
+			eventually.put("order", map);
+			eventually.put("ods", ods);
+			listEventually.add(eventually);
+		}
+		ma.setAttribute("listOrder", listEventually);
+		return ma;
 	}
 
 	private String subPoint(String str) {

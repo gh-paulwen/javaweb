@@ -1,6 +1,7 @@
 package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.OrderDetail;
 import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcAction;
@@ -44,6 +45,13 @@ public class OrderDetailDao {
 		String sql = "select * from orderDetail where `order` = ?";
 		JdbcAction action = new JdbcAction(sql,order);
 		return jdbcUtil.queryList(action, OrderDetail.class);
+	}
+	
+	public List<Map<String,Object>> getVerboseByOrder(int order){
+		String sql = "select orderdetail.order,orderdetail.count,product.name as productname,product.price,product.pic,product.description,product.secCategory as categoryid , concat(category.`name`,' ',seccategory.`name`) as category from `orderdetail`,product,seccategory,category where orderdetail.product = product.id and product.secCategory=seccategory.id and seccategory.category = category.id and  orderdetail.`order` = ?";
+		
+		JdbcAction action = new JdbcAction(sql,order);
+		return jdbcUtil.queryMapList(action);
 	}
 	
 }

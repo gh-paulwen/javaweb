@@ -2,6 +2,7 @@ $(function() {
     var id = location.search.split("=")[1];
     $("#btn_add_product").attr("href", "add_product.html?storeid=" + id);
     var apStore = javaweb.createAP("/storeJson?method=getVerbose&id=" + id);
+    var apLoadOrder = javaweb.createAP("/orderJson?method=getByStore&store=" + id);
     apStore.success = function(json) {
         var store = json.store;
         $("#info_name").html(store.storename);
@@ -41,4 +42,5 @@ $(function() {
         }
     };
     $.ajax(apProduct);
+    javaweb.loadOrder(apLoadOrder);
 });

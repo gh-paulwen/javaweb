@@ -22,3 +22,13 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.order {
+    border-radius: 10px;
+    padding: 30px;
+    cursor: pointer;
+}
+
+.order:hover {
+    border: 1px solid grey;
+}

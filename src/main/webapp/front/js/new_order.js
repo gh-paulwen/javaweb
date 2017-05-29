@@ -185,6 +185,7 @@ $(function() {
 
             apOrder.success = function(json) {
                 alert(json.message);
+                location.href = "order.html";
             };
             $.ajax(apOrder);
         }

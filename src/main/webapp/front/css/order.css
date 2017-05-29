@@ -1,5 +1,7 @@
 .order {
     border-radius: 20px;
+    padding: 30px;
+    cursor: pointer;
 }
 
 .order:hover {
@@ -13,6 +15,7 @@
     cursor: pointer;
 }
 
-.order div {
-    text-align: center;
+#orderDetails .od {
+    height: 200px;
+    border: 1px solid grey;
 }

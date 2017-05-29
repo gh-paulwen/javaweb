@@ -2,6 +2,7 @@ package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Order;
 import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcAction;
@@ -77,6 +78,24 @@ public class OrderDao {
 		Object res =  jdbcUtil.queryPrimitive(action);
 		long id = res == null ? 1l : (long) res;
 		return Integer.parseInt(String.valueOf(id));
+	}
+	
+	public List<Map<String,Object>> getVerboseListByCustomer(int user){
+		String sql = "select `order`.id,`order`.user as userid,`order`.store as storeid,`order`.address as addressid,`order`.createDate,`order`.`status`,trim(user.`name`) as username,trim(store.`name`) as storename, address.verboseAddress ,address.receiverName,address.receiverPhone ,concat(c2.`name`,' ',c1.`name`)  as region from `order`,user,store,address,city as c1,city as c2 where `order`.user = user.id and `order`.store = store.id and `order`.address=address.id and address.region=c1.id and c1.superCity = c2.id and `order`.user = ?";
+		JdbcAction action = new JdbcAction(sql,user);
+		return jdbcUtil.queryMapList(action);
+	}
+	
+	public List<Map<String,Object>> getVerboseListByStore(int store){
+		String sql = "select `order`.id,`order`.user as userid,`order`.store as storeid,`order`.address as addressid,`order`.createDate,`order`.`status`,trim(user.`name`) as username,trim(store.`name`) as storename, address.verboseAddress ,address.receiverName,address.receiverPhone,concat(c2.`name`,' ',c1.`name`)  as region from `order`,user,store,address,city as c1,city as c2 where `order`.user = user.id and `order`.store = store.id and `order`.address=address.id and address.region=c1.id and c1.superCity = c2.id and `order`.store = ?";
+		JdbcAction action = new JdbcAction(sql,store);
+		return jdbcUtil.queryMapList(action);
+	}
+	
+	public Map<String,Object> getVerboseById(int id){
+		String sql = "select `order`.id,`order`.user as userid,`order`.store as storeid,`order`.address as addressid,`order`.createDate,`order`.`status`,trim(user.`name`) as username,trim(store.`name`) as storename, address.verboseAddress ,address.receiverName,address.receiverPhone,concat(c2.`name`,' ',c1.`name`)  as region from `order`,user,store,address,city as c1,city as c2 where `order`.user = user.id and `order`.store = store.id and `order`.address=address.id and address.region=c1.id and c1.superCity = c2.id and `order`.id = ?";
+		JdbcAction action = new JdbcAction(sql,id);
+		return jdbcUtil.queryMap(action);
 	}
 
 }
