@@ -1,5 +1,6 @@
 var javaweb_order = {};
 $(function() {
+    javaweb.check(0, "login.html");
     //{order:{store:1,address:1},orderDetails:[{product:1,count:1},{product:2,count:1}]}
     var total = 0;
     javaweb_order.data = {};

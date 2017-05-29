@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    javaweb.check(0, "login.html");
     var apInfo = javaweb.createAP("/userJson?method=getInfo");
     apInfo.success = function(json) {
         $("#info_name").html(json.info.name);

@@ -92,7 +92,7 @@ public class ProductServlet extends BaseServlet{
 		return ma.getDestination();
 	}
 	
-	protected String page(HttpServletRequest req, HttpServletResponse resp)
+	protected String all(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		String method = req.getMethod();
@@ -101,13 +101,12 @@ public class ProductServlet extends BaseServlet{
 			req.getRequestDispatcher("/input.jsp").forward(req, resp);
 			return null;
 		}
-		int page = Integer.parseInt(req.getParameter("page"));
-		ModelAttribute ma = productService.page(page);
+		ModelAttribute ma = productService.all();
 		ma.pollute(req);
 		return ma.getDestination();
 	}
 	
-	protected String categoryPage(HttpServletRequest req, HttpServletResponse resp)
+	protected String categoryAll(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		String method = req.getMethod();
@@ -117,14 +116,13 @@ public class ProductServlet extends BaseServlet{
 			return null;
 		}
 		
-		int page = Integer.parseInt(req.getParameter("page"));
 		int category = Integer.parseInt(req.getParameter("category"));
-		ModelAttribute ma = productService.categoryPage(category, page);
+		ModelAttribute ma = productService.categoryAll(category);
 		ma.pollute(req);
 		return ma.getDestination();
 	}
 	
-	protected String secCategoryPage(HttpServletRequest req, HttpServletResponse resp)
+	protected String secCategoryAll(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		String method = req.getMethod();
@@ -134,9 +132,8 @@ public class ProductServlet extends BaseServlet{
 			return null;
 		}
 		
-		int page = Integer.parseInt(req.getParameter("page"));
 		int secCategory = Integer.parseInt(req.getParameter("secCategory"));
-		ModelAttribute ma = productService.secCategoryPage(secCategory, page);
+		ModelAttribute ma = productService.secCategoryAll(secCategory);
 		ma.pollute(req);
 		return ma.getDestination();
 	}

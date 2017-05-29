@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    javaweb.check(0, "login.html");
     //submit
     $("#btn_save").click(function() {
         var apSubmit = javaweb.createAP("/addressJson");

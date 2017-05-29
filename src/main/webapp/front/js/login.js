@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    javaweb.check("my.html");
     $("#btn_login").click(function() {
         var ap = javaweb.createAP("/userJson");
         ap.type = "POST";
@@ -9,6 +10,9 @@ $(document).ready(function() {
         };
         ap.success = function(json) {
             alert(json.message);
+            if (json.message === "登录成功") {
+                location.href = "my.html";
+            }
         }
         $.ajax(ap);
     });

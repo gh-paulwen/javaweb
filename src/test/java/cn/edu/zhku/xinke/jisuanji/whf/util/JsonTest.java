@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -58,6 +59,15 @@ public class JsonTest {
 		
 		
 		
+	}
+	
+	@Test
+	public void testRand(){
+		Random rand = new Random();
+		for(int i= 0;i < 100 ;i ++){
+			int ra = rand.nextInt(10);
+			System.out.println(ra);
+		}
 	}
 
 }

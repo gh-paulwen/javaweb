@@ -9,9 +9,5 @@ public class CartDaoTest {
 	
 	@Test
 	public void TestSave(){
-		Cart cart=new Cart();
-		cart.setUserId(10);
-		cart.setProductId(20);
-		cartDao.save(cart);
 	}
 }

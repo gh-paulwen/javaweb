@@ -1,4 +1,5 @@
 $(function() {
+    javaweb.check(0, "login.html");
     var storeid = location.search.split("=")[1];
     $("#btn_next").click(function() {
         var apNext = javaweb.createAP("/productJson");

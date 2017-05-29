@@ -7,7 +7,7 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
-    <link rel="stylesheet" type="text/css" href="css/store.css">
+    <link rel="stylesheet" type="text/css" href="css/my_store.css">
 </head>
 
 <body>
@@ -28,37 +28,30 @@
 
     <div class="container">
         <h4>店铺基本信息</h4>
-        <p>店铺名：Name</p>
-        <p>卖家名：User Name</p>
-        <p>注册日期：2017-05-23</p>
-        <p>所在地：广东广州</p>
+        <p>店铺名：<span id="info_name"></span></p>
+        <p>卖家名：<span id="info_user_name"></span></p>
+        <p>注册日期：<span id="info_register_date"></span></p>
+        <p>所在地：<span id="info_region"></span></p>
         <hr>
-        <h4>店内商品</h4>
         <div class="row">
-            <div class="col-xs-4 productdiv">
-                <img class="product-img" style="width:180px;" src="img/logo.png">
-                <h5>产品名称</h5>
-                <p>产品描述</p>
-            </div>
-            <div class="col-xs-4 productdiv">
-                <img class="product-img" style="width:180px;" src="img/logo.png">
-                <h5>产品名称</h5>
-                <p>产品描述</p>
-            </div>
-            <div class="col-xs-4 productdiv">
-                <img class="product-img" style="width:180px;" src="img/logo.png">
-                <h5>产品名称</h5>
-                <p>产品描述</p>
+            <div class="col-xs-10">
+                <h4>店内商品</h4>
             </div>
         </div>
-
+        <div class="row" id="div_products">
+        </div>
+        <hr>
     </div>
+    <hr>
+    <div style="text-align:center;">
+        Copyright@PaulWen
+    </div>
+    <div style="height:25px;"></div>
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/variables.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/store.js"></script>
 </body>
 
 </html>
-

@@ -1,19 +1,25 @@
 $(function() {
-    javaweb.check(0, "login.html");
-    var id = location.search.split("=")[1];
-    $("#btn_add_product").attr("href", "add_product.html?storeid=" + id);
-    var apStore = javaweb.createAP("/storeJson?method=getVerbose&id=" + id);
-    var apLoadOrder = javaweb.createAP("/orderJson?method=getByStore&store=" + id);
-    apStore.success = function(json) {
-        var store = json.store;
-        $("#info_name").html(store.storename);
-        $("#info_user_name").html(store.username);
-        $("#info_register_date").html(store.registerDate);
-        $("#info_region").html(store.region);
-    };
-    $.ajax(apStore);
+    var reqStr = "/productJson?method=all";
+    if (location.search) {
+        var search = location.search.substr(1);
+        var arr = search.split("&");
+        var params = {};
+        for (var i = 0; i < arr.length; i++) {
+            var ele = arr[i];
+            var arr2 = ele.split("=");
+            params[arr2[0]] = arr2[1];
+        }
+        if (params.keyword) {
+            //search
+            reqStr = "/productJson?method=search&keyword=" + params.keyword;
+        } else if (params.category) {
+            //category
+            reqStr = "/productJson?method=categoryAll&category=" + params.category;
+        }
+    }
 
-    var apProduct = javaweb.createAP("/productJson?method=getByStore&store=" + id);
+
+    var apProduct = javaweb.createAP(reqStr);
     apProduct.success = function(json) {
         var products = json.listProduct;
         var div_products = $("#div_products");
@@ -25,7 +31,7 @@ $(function() {
                     location.href = "product_detail.html?pid=" + pid;
                 };
             })(product.id));
-            div.addClass("col-xs-3 productdiv");
+            div.addClass("col-xs-3 product");
             var img = $(document.createElement("img"));
             img.attr("src", javaweb.base + "/file?method=retrive&img=" + product.pic);
             img.attr("style", "width:240px;");
@@ -41,6 +47,6 @@ $(function() {
             div_products.append("<div class='col-xs-1' style='margin-top:20px;'></div>");
         }
     };
+
     $.ajax(apProduct);
-    javaweb.loadOrder(apLoadOrder);
 });

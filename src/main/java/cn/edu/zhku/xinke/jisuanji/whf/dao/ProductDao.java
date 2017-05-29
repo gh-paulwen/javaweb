@@ -1,5 +1,6 @@
 package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -86,21 +87,21 @@ public class ProductDao {
 		return jdbcUtil.execute(action);
 	}
 	
-	public List<Product> page(int from , int count){
-		String sql = "select * from product order by createDate desc limit ?,?";
-		JdbcAction action = new JdbcAction(sql,from,count);
+	public List<Product> all(){
+		String sql = "select * from product order by createDate desc";
+		JdbcAction action = new JdbcAction(sql);
 		return jdbcUtil.queryList(action, Product.class);
 	} 
 	
-	public List<Product> categoryPage(int category,int from , int count){
-		String sql = "select * from product where secCategory in (select id from seccategory where category = ?) order by createDate desc limit ?,?";
-		JdbcAction action = new JdbcAction(sql,category,from,count);
+	public List<Product> categoryAll(int category){
+		String sql = "select * from product where secCategory in (select id from seccategory where category = ?) order by createDate desc";
+		JdbcAction action = new JdbcAction(sql,category);
 		return jdbcUtil.queryList(action, Product.class);
 	}
 	
-	public List<Product> secCategoryPage(int secCategory,int from,int count){
-		String sql = "select * from product where secCategory = ? order by createDate limit ?,?";
-		JdbcAction action = new JdbcAction(sql,secCategory,from,count);
+	public List<Product> secCategoryAll(int secCategory){
+		String sql = "select * from product where secCategory = ? order by createDate";
+		JdbcAction action = new JdbcAction(sql,secCategory);
 		return jdbcUtil.queryList(action, Product.class);
 	}
 	
@@ -144,5 +145,17 @@ public class ProductDao {
 		String sql = "select trim(product.id) as id,trim(product.name) as productname,product.price,product.pic,product.description,product.createDate,trim(store.id) as storeid,trim(store.name) as storename,concat(category.name,' ' ,seccategory.name) as category from product , store , category , seccategory where product.store = store.id and product.secCategory = seccategory.id and seccategory.category = category.id and product.id = ?";
 		JdbcAction action = new JdbcAction(sql,id);
 		return jdbcUtil.queryMap(action);
+	}
+	
+	public List<Product> getThree(int[] arr){
+		if(arr.length != 3){
+			return Collections.emptyList();
+		}
+		String sql = "select * from product where id in (?,?,?)";
+		Object[] params = new Object[]{
+				arr[0],arr[1],arr[2]
+		};
+		JdbcAction action = new JdbcAction(sql,params);
+		return jdbcUtil.queryList(action, Product.class);
 	}
 }

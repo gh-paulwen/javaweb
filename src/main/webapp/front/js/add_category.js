@@ -1,4 +1,5 @@
 $(function() {
+    javaweb.check(0, "login.html");
     var apGet = javaweb.createAP("/categoryJson?method=getAllCategory");
     apGet.success = function(json) {
         var cates = json.listCategory;

@@ -2,6 +2,7 @@ package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,8 +26,6 @@ public class ProductService {
 
 	private ProductDao productDao = ProductDao.getInstance();
 	private StoreDao storeDao = StoreDao.getInstance();
-
-	private int count = 20;
 
 	public ModelAttribute save(Product product, HttpSession session) {
 		ModelAttribute ma = new ModelAttribute("forward:message.jsp");
@@ -140,35 +139,23 @@ public class ProductService {
 		return ma;
 	}
 
-	public ModelAttribute page(int page) {
-		return page(page, count);
-	}
-
-	public ModelAttribute page(int page, int count) {
+	public ModelAttribute all() {
 		ModelAttribute ma = new ModelAttribute("forward:product_list.jsp");
-		List<Product> list = productDao.page((page - 1) * count, count);
+		List<Product> list = productDao.all();
 		ma.setAttribute("listProduct", list);
 		return ma;
 	}
 
-	public ModelAttribute categoryPage(int category, int page) {
-		return categoryPage(category, page, count);
-	}
-
-	public ModelAttribute categoryPage(int category, int page, int count) {
+	public ModelAttribute categoryAll(int category) {
 		ModelAttribute ma = new ModelAttribute("forward:product_list.jsp");
-		List<Product> list = productDao.categoryPage(category, (page - 1)* count, count);
+		List<Product> list = productDao.categoryAll(category);
 		ma.setAttribute("listProduct", list);
 		return ma;
 	}
-
-	public ModelAttribute secCategoryPage(int secCategory, int page) {
-		return secCategoryPage(secCategory, page, count);
-	}
-
-	public ModelAttribute secCategoryPage(int secCategory, int page, int count) {
+	
+	public ModelAttribute secCategoryAll(int secCategory) {
 		ModelAttribute ma = new ModelAttribute("forward:product_list.jsp");
-		List<Product> list = productDao.secCategoryPage(secCategory, (page - 1) * count, count);
+		List<Product> list = productDao.secCategoryAll(secCategory);
 		ma.setAttribute("listProduct", list);
 		return ma;
 	}
@@ -230,6 +217,16 @@ public class ProductService {
 		
 		Map<String,Object> product = productDao.getVerbose(id);
 		ma.setAttribute("product", product);
+		return ma;
+	}
+	
+//	private Random rand = new Random();
+	public ModelAttribute random(){
+		ModelAttribute ma = new ModelAttribute();
+//		int max = Integer.valueOf(String.valueOf(productDao.getAvailableId()));
+		int[] arr = new int[]{13,14,22};		
+		List<Product> list = productDao.getThree(arr);
+		ma.setAttribute("listProduct", list);
 		return ma;
 	}
 

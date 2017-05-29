@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    javaweb.check(0, "login.html");
     var apInfo = javaweb.createAP("/userJson?method=getInfo");
     var apAddress = javaweb.createAP("/addressJson?method=getVerbose");
     apInfo.success = function(json) {

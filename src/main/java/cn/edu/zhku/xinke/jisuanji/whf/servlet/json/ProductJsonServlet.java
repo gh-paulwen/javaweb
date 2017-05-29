@@ -89,7 +89,7 @@ public class ProductJsonServlet extends JsonServlet {
 		return ma.get();
 	}
 
-	protected Object page(HttpServletRequest req, HttpServletResponse resp)
+	protected Object all(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		String method = req.getMethod();
@@ -98,12 +98,11 @@ public class ProductJsonServlet extends JsonServlet {
 			req.getRequestDispatcher("/input.jsp").forward(req, resp);
 			return null;
 		}
-		int page = Integer.parseInt(req.getParameter("page"));
-		ModelAttribute ma = productService.page(page);
+		ModelAttribute ma = productService.all();
 		return ma.get();
 	}
 
-	protected Object categoryPage(HttpServletRequest req,
+	protected Object categoryAll(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 
 		String method = req.getMethod();
@@ -113,13 +112,12 @@ public class ProductJsonServlet extends JsonServlet {
 			return null;
 		}
 
-		int page = Integer.parseInt(req.getParameter("page"));
 		int category = Integer.parseInt(req.getParameter("category"));
-		ModelAttribute ma = productService.categoryPage(category, page);
+		ModelAttribute ma = productService.categoryAll(category);
 		return ma.get();
 	}
 
-	protected Object secCategoryPage(HttpServletRequest req,
+	protected Object secCategoryAll(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 
 		String method = req.getMethod();
@@ -129,9 +127,8 @@ public class ProductJsonServlet extends JsonServlet {
 			return null;
 		}
 
-		int page = Integer.parseInt(req.getParameter("page"));
 		int secCategory = Integer.parseInt(req.getParameter("secCategory"));
-		ModelAttribute ma = productService.secCategoryPage(secCategory, page);
+		ModelAttribute ma = productService.secCategoryAll(secCategory);
 		return ma.get();
 	}
 
@@ -203,6 +200,19 @@ public class ProductJsonServlet extends JsonServlet {
 		}
 		int id = Integer.parseInt(req.getParameter("id"));
 		ModelAttribute ma = productService.getVerbose(id);
+		return ma.get();
+	}
+	
+	protected Object random(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String method = req.getMethod();
+		if (!"GET".equalsIgnoreCase(method)) {
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+		ModelAttribute ma = productService.random();
 		return ma.get();
 	}
 

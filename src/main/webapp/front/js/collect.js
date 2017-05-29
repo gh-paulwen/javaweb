@@ -1,4 +1,5 @@
 $(function() {
+    javaweb.check(0, "login.html");
     var apCollect = javaweb.createAP("/collectJson?method=getVerbose");
     apCollect.success = function(json) {
         var verboses = json.listVerbose,

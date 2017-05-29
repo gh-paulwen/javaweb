@@ -54,8 +54,7 @@ $(function() {
         }
     });
     $("#btn_buy").click(function() {
-        var count = $("#input_count").val()
-        alert(count);
+        var count = $("#input_count").val();
         window.location.href = `new_order.html?product=${id}&count=${count}`;
     });
 });

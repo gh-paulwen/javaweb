@@ -92,6 +92,7 @@
 				var ap = javaweb.createAP("/productJson?method=connectPic&pic=" + pic + "&product=" + id);
 				ap.success = function(json){
 					alert(json.message);
+					location.href="front/my.html";
 				};
 				$.ajax(ap);
 			};

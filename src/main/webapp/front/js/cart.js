@@ -1,4 +1,5 @@
 $(function() {
+    javaweb.check(0, "login.html");
     var apCart = javaweb.createAP("/cartJson?method=getVerbose");
     apCart.success = function(json) {
         var verboses = json.listVerbose,

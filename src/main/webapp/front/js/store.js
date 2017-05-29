@@ -1,9 +1,7 @@
 $(function() {
-    javaweb.check(0, "login.html");
     var id = location.search.split("=")[1];
     $("#btn_add_product").attr("href", "add_product.html?storeid=" + id);
     var apStore = javaweb.createAP("/storeJson?method=getVerbose&id=" + id);
-    var apLoadOrder = javaweb.createAP("/orderJson?method=getByStore&store=" + id);
     apStore.success = function(json) {
         var store = json.store;
         $("#info_name").html(store.storename);
@@ -39,8 +37,8 @@ $(function() {
             div.append(h3price);
             div_products.append(div);
             div_products.append("<div class='col-xs-1' style='margin-top:20px;'></div>");
+
         }
     };
     $.ajax(apProduct);
-    javaweb.loadOrder(apLoadOrder);
 });
