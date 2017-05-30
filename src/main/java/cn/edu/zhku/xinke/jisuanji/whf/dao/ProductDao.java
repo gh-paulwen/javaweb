@@ -1,6 +1,5 @@
 package cn.edu.zhku.xinke.jisuanji.whf.dao;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -147,15 +146,10 @@ public class ProductDao {
 		return jdbcUtil.queryMap(action);
 	}
 	
-	public List<Product> getThree(int[] arr){
-		if(arr.length != 3){
-			return Collections.emptyList();
-		}
-		String sql = "select * from product where id in (?,?,?)";
-		Object[] params = new Object[]{
-				arr[0],arr[1],arr[2]
-		};
-		JdbcAction action = new JdbcAction(sql,params);
+	public List<Product> random(int count){
+		
+		String sql = "select * from product order by rand() limit 0, ?;";
+		JdbcAction action = new JdbcAction(sql,count);
 		return jdbcUtil.queryList(action, Product.class);
 	}
 }

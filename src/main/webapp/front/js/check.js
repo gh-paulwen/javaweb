@@ -10,6 +10,7 @@ javaweb.check = function(al, not) {
             //未登录
             // window.location.href = "login.html";
             if (not) {
+                alert("未登录");
                 window.location.href = not;
             }
         }

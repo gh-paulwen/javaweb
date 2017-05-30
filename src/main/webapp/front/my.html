@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>index</title>
+    <title>个人中心</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/my.css">
@@ -14,7 +14,7 @@
     <div id="divnav">
         <ul id="navleft">
             <li class="navitem"><a href="index.html">网站名</a></li>
-            <li class="navitem"><a href="my.html">我的Website</a></li>
+            <li class="navitem"><a href="my.html">个人中心</a></li>
             <li class="navitem"><a href="order.html">我的订单</a></li>
             <li class="navitem"><a href="collect.html">收藏夹</a></li>
             <li class="navitem"><a href="cart.html">购物车</a></li>
@@ -27,12 +27,26 @@
     </div>
 
     <div class="container">
-        <h4>帐号信息</h4>
-        <p>用户名：<span id="info_username">Paul Wen</span></p>
-        <p>注册日期：<span id="info_register_date">2017</span></p>
-        <p>邮箱地址：<span id="info_email">2292</span></p>
+        <div class="row">
+            <div class="col-xs-10">
+                <h4>帐号信息</h4>
+                <p>用户名：<span id="info_username"></span></p>
+                <p>注册日期：<span id="info_register_date"></span></p>
+                <p>邮箱地址：<span id="info_email"></span></p>
+            </div>
+            <div class="col-xs-2">
+                <button id="btn_logout">退出</button>
+            </div>
+        </div>
         <hr>
-        <h4>我的地址</h4>
+        <div class="row">
+            <div class="col-xs-10">
+                <h4>我的地址</h4>
+            </div>
+            <div class="col-xs-2">
+                <a id="btn_add_address" href="add_address.html">添加地址</a>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>

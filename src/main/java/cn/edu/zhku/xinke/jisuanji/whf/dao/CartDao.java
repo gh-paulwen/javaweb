@@ -110,10 +110,15 @@ public class CartDao {
 		return jdbcUtil.queryList(action,Cart.class);
 	}
 	
-	public List<Map<String,Object>> getVerboseById(int id){
-		String sql = "select * from cart , product where cart.product = product.id and cart.user = ?";
-		
-		JdbcAction action = new JdbcAction(sql,id);
+	public List<Map<String,Object>> getVerboseByStoreAndUser(int store,int user){
+		String sql = "select * from cart , product where cart.product = product.id and cart.user = ? and product.store = ?";
+		JdbcAction action = new JdbcAction(sql,user,store);
+		return jdbcUtil.queryMapList(action);
+	}
+	
+	public List<Map<String,Object>> getStoreByUser(int user){
+		String sql = "select distinct store.id,store.name from store,product,cart where store.id = product.store and product.id = cart.product and cart.user=?";
+		JdbcAction action = new JdbcAction(sql,user);
 		return jdbcUtil.queryMapList(action);
 	}
 }

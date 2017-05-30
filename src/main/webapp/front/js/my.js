@@ -73,3 +73,15 @@ $(function() {
     };
     $.ajax(apStore);
 });
+
+$(function() {
+    $("#btn_logout").click(function() {
+        var logoutap = javaweb.createAP("/userJson?method=logout");
+        logoutap.success = function(json) {
+            alert(json.message);
+            location.href = "login.html";
+        };
+
+        $.ajax(logoutap);
+    });
+});

@@ -15,6 +15,7 @@ javaweb.loadOrder = function(ap) {
                 var span_status = $(document.createElement("span"));
                 span_date.append("订单创建时间：" + order.createDate + "&nbsp;&nbsp;&nbsp;&nbsp;");
                 span_status.append("订单状态: " + order.status + "<br>");
+                span_status.css("color", "red");
                 div_date_status.append(span_date);
                 div_date_status.append(span_status);
                 divorder.append(div_date_status);
@@ -57,6 +58,8 @@ javaweb.loadOrder = function(ap) {
                 div_ods.addClass("col-xs-10");
                 var div_space = $(document.createElement("div"));
                 div_space.addClass("col-xs-1");
+
+                var order_total = 0;
                 for (var j = 0; j < ods.length; j++) {
                     var od = ods[j];
                     //创建.od div
@@ -85,6 +88,7 @@ javaweb.loadOrder = function(ap) {
                     pprice.append("商品单价：" + od.price);
                     pcount.append("商品数量：" + od.count);
                     ptotal.append("商品总价：" + od.count * od.price);
+                    order_total = order_total + od.count * od.price;
                     divdesc.append(pname);
                     divdesc.append(pcategory);
                     divdesc.append(pdesc);
@@ -99,6 +103,18 @@ javaweb.loadOrder = function(ap) {
                 }
                 div_ontop.append(div_space);
                 div_ontop.append(div_ods);
+                var div_total = $(document.createElement("div"));
+                var div_sp = $(document.createElement("div"));
+                var div_price = $(document.createElement("div"));
+                var h3 = $(document.createElement("h3"));
+                h3.append(`订单总价：<span style="color:red;">${order_total}</span>`);
+                div_sp.addClass("col-xs-10");
+                div_total.addClass("row");
+                div_price.addClass("col-xs-2");
+                div_price.append(h3);
+                div_total.append(div_sp);
+                div_total.append(div_price);
+                div_ontop.append(div_total);
                 divorder.append(div_ontop);
                 $("#orders").append(divorder);
             }

@@ -1,13 +1,17 @@
 package cn.edu.zhku.xinke.jisuanji.whf.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import cn.edu.zhku.xinke.jisuanji.whf.dao.CartDao;
+import cn.edu.zhku.xinke.jisuanji.whf.dao.StoreDao;
 import cn.edu.zhku.xinke.jisuanji.whf.dto.ModelAttribute;
 import cn.edu.zhku.xinke.jisuanji.whf.model.Cart;
+import cn.edu.zhku.xinke.jisuanji.whf.model.Store;
 import cn.edu.zhku.xinke.jisuanji.whf.model.User;
 
 public class CartService {
@@ -18,6 +22,7 @@ public class CartService {
 		return instance;
 	}
 	private CartDao cartDao=CartDao.getInstance();
+	private StoreDao storeDao = StoreDao.getInstance();
 	
 	/**
 	 * 添加商品到购物车
@@ -93,8 +98,33 @@ public class CartService {
 			ma.setAttribute("message", "未登录");
 			return ma;
 		}
-		List<Map<String,Object>> list = cartDao.getVerboseById(curUser.getId());
+		int userid = curUser.getId();
+		List<Map<String,Object>> listStore = cartDao.getStoreByUser(userid);
+		List<Map<String,Object>> list = new ArrayList<>();
+		for(Map<String,Object> map:listStore){
+			int storeid = (int) map.get("id");
+			List<Map<String,Object>> listVerbose = cartDao.getVerboseByStoreAndUser(storeid, userid);
+			Map<String,Object> one = new HashMap<>();
+			one.put("store", map);
+			one.put("listVerbose", listVerbose);
+			list.add(one);
+		}
+		ma.setAttribute("list", list);
+		return ma;
+	}
+	
+	public ModelAttribute getVerboseByStore(int store,HttpSession session){
+		ModelAttribute ma = new ModelAttribute("forwar:cart.jsp");
+		User curUser = (User) session.getAttribute(User.CURRENT_USER);
+		if(curUser == null){
+			ma.setDestination("forward:message.jsp");
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		List<Map<String,Object>> list = cartDao.getVerboseByStoreAndUser(store, curUser.getId());
+		Store storeGet = storeDao.getById(store);
 		ma.setAttribute("listVerbose", list);
+		ma.setAttribute("store", storeGet);
 		return ma;
 	}
 }

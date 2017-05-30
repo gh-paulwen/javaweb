@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>index</title>
+<title>上传图片</title>
 <link rel="stylesheet" type="text/css"
 	href="front/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="front/css/nav.css">
@@ -16,7 +16,7 @@
 	<div id="divnav">
 		<ul id="navleft">
 			<li class="navitem"><a href="front/index.html">网站名</a></li>
-			<li class="navitem"><a href="front/my.html">我的Website</a></li>
+			<li class="navitem"><a href="front/my.html">个人中心</a></li>
 			<li class="navitem"><a href="front/order.html">我的订单</a></li>
 			<li class="navitem"><a href="front/collect.html">收藏夹</a></li>
 			<li class="navitem"><a href="front/cart.html">购物车</a></li>

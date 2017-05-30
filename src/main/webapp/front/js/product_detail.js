@@ -5,7 +5,7 @@ $(function() {
         var product = json.product;
         $("#info_name").html(product.productname);
         $("#info_price").html(product.price).css("color", "red");
-        $("#info_store").html(product.storename);
+        $("#info_store").html(`<a href="store.html?store=${product.storeid}">${product.storename}</a>`);
         $("#info_category").html(product.category);
         $("#info_create_date").html(product.createDate);
         $("#info_description").html(product.description);

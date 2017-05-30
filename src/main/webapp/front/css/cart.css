@@ -1,9 +1,8 @@
 .cart {
     border-radius: 20px;
-}
-
-.cart:hover {
-    border: 1px solid grey;
+    box-shadow: 1px 1px 5px 1px #008249;
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 .cart a {
@@ -17,7 +16,17 @@
     text-align: center;
 }
 
-#btn_buy {
+.store {
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.store:hover {
+    border: 1px solid grey;
+}
+
+.btn_buy {
     width: 100px;
     padding: 12px;
     color: white;
@@ -26,6 +35,6 @@
     border-radius: 5px;
 }
 
-#btn_buy:hover {
+.btn_buy:hover {
     background-color: #009949;
 }

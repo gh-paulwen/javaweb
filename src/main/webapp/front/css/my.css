@@ -12,3 +12,24 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+#btn_add_address,
+#btn_logout {
+    text-decoration: none;
+    width: 100px;
+    border: 0;
+    border-radius: 3px;
+    background-color: #008249;
+    cursor: pointer;
+    padding: 12px;
+    color: white;
+}
+
+#btn_add_address:hover,
+#btn_logout:hover {
+    background-color: #009949;
+}
+
+#btn_logout {
+    margin-top: 20px;
+}

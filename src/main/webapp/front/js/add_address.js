@@ -6,6 +6,7 @@ $(document).ready(function() {
         apSubmit.type = "POST";
         apSubmit.success = function(json) {
             alert(json.message);
+            loaction.href = "my.html";
         };
         apSubmit.data = {
             "method": "save",

@@ -48,3 +48,15 @@ $(function() {
     loadSomeProduct($("#divp2"));
     loadSomeProduct($("#divp3"));
 });
+
+
+$(function() {
+    $("#btn_search").click(function() {
+        var keyword = $("#input_search").val();
+        if (keyword === "") {
+            alert("请输入关键字");
+            return;
+        }
+        location.href = "product_list.html?keyword=" + keyword;
+    });
+});

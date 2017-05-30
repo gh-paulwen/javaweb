@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cn.edu.zhku.xinke.jisuanji.whf.dto.ModelAttribute;
 import cn.edu.zhku.xinke.jisuanji.whf.model.User;
@@ -70,6 +71,20 @@ private UserService userService = UserService.getInstance();
 			req.getRequestDispatcher("/input.jsp").forward(req,resp);
 		}
 		ModelAttribute ma = userService.checkInfo(req.getSession());
+		return ma.get();
+	}
+	
+	protected Object logout(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
+		ModelAttribute ma = new ModelAttribute();
+		HttpSession session = req.getSession();
+		session.removeAttribute(User.CURRENT_USER);
+		ma.setAttribute("message", "退出成功");
 		return ma.get();
 	}
 

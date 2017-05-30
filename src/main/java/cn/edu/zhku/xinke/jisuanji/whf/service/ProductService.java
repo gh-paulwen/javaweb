@@ -2,7 +2,6 @@ package cn.edu.zhku.xinke.jisuanji.whf.service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -224,8 +223,7 @@ public class ProductService {
 	public ModelAttribute random(){
 		ModelAttribute ma = new ModelAttribute();
 //		int max = Integer.valueOf(String.valueOf(productDao.getAvailableId()));
-		int[] arr = new int[]{13,14,22};		
-		List<Product> list = productDao.getThree(arr);
+		List<Product> list = productDao.random(3);
 		ma.setAttribute("listProduct", list);
 		return ma;
 	}

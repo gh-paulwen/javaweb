@@ -63,7 +63,7 @@ public class UserService {
 		//默认顾客注册
 		user.setType(1);
 		userDao.save(user);
-		ma.setAttribute("message", "注册成功,点击<a href='/login.jsp'>登录</a>");
+		ma.setAttribute("message", "注册成功");
 		return ma;
 	}
 	

@@ -1,14 +1,23 @@
 var javaweb_order = {};
 $(function() {
     javaweb.check(0, "login.html");
+    //?product=8&count=3
+    var search = location.search.substr(1);
+    var arr = search.split("&");
+    var params = {};
+    for (var i = 0; i < arr.length; i++) {
+        var ele = arr[i];
+        var arr2 = ele.split("=");
+        params[arr2[0]] = arr2[1];
+    }
     //{order:{store:1,address:1},orderDetails:[{product:1,count:1},{product:2,count:1}]}
     var total = 0;
     javaweb_order.data = {};
     javaweb_order.orderMap = {};
     javaweb_order.orderDetailsArr = [];
-    if (location.search === "") {
+    if (params.store) {
         //从购物车中取出
-        var apCart = javaweb.createAP("/cartJson?method=getVerbose");
+        var apCart = javaweb.createAP("/cartJson?method=getVerboseByStore&store=" + params.store);
         apCart.success = function(json) {
             var verboses = json.listVerbose,
                 order_details = $("#orderDetails");
@@ -62,17 +71,7 @@ $(function() {
             $("#info_total").html(total);
         };
         $.ajax(apCart);
-    } else {
-        //直接购买
-        //?product=8&count=3
-        var search = location.search.substr(1);
-        var arr = search.split("&");
-        var params = {};
-        for (var i = 0; i < arr.length; i++) {
-            var ele = arr[i];
-            var arr2 = ele.split("=");
-            params[arr2[0]] = arr2[1];
-        }
+    } else if (params.product) {
         var apGet = javaweb.createAP("/productJson?method=getVerbose&id=" + params["product"]);
         var order_details = $("#orderDetails");
         apGet.success = function(json) {
@@ -124,6 +123,8 @@ $(function() {
             $("#info_total").html(total);
         };
         $.ajax(apGet);
+    } else {
+        alert("缺少参数");
     }
 });
 

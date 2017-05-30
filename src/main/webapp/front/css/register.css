@@ -6,11 +6,6 @@
     padding: 50px;
 }
 
-#input_password {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 #btn_register {
     border: 0px;
     border-radius: 3px;
@@ -19,5 +14,4 @@
     background-color: #008249;
     width: 100px;
     margin-right: 20px;
-    margin-top: 20px;
 }
