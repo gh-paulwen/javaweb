@@ -44,6 +44,21 @@ public class OrderJsonServlet extends JsonServlet {
 		ModelAttribute ma = orderService.send(orderid, storeid,req.getSession());
 		return ma.get();
 	}
+	
+	protected Object pay(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if (!"POST".equalsIgnoreCase(method)) {
+			req.setAttribute("message", "method : " + method + " not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req, resp);
+			return null;
+		}
+
+		int orderid = Integer.parseInt(req.getParameter("order"));
+		int storeid = Integer.parseInt(req.getParameter("storeid"));
+		ModelAttribute ma = orderService.pay(orderid, storeid,req.getSession());
+		return ma.get();
+	}
 
 	protected Object receive(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

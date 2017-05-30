@@ -42,5 +42,5 @@ $(function() {
         }
     };
     $.ajax(apProduct);
-    javaweb.loadOrder(apLoadOrder);
+    javaweb.loadOrder(apLoadOrder, 1);
 });

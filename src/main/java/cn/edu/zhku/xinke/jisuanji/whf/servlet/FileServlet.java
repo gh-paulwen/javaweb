@@ -26,7 +26,7 @@ public class FileServlet extends BaseServlet {
 
 	private ServletFileUpload upload ;
 	
-	private String uploadDir = "D:\\upload";
+	private String uploadDir = "/home/paul/Documents/upload";
 	
 	private int maxSize = 1024 * 1024 * 5;
 	

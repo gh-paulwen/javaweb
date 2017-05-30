@@ -55,7 +55,7 @@ public class OrderService {
 		Order orderGet = null;
 		boolean cancancel = false;
 		for (Order order : list) {
-			if (order.getId() == orderid) {
+			if (order.getId() == orderid && order.getStatus().equalsIgnoreCase(Order.Status.UNPAID.name())) {
 				cancancel = true;
 				orderGet = order;
 				break;
@@ -104,7 +104,7 @@ public class OrderService {
 		List<Order> listOrder = orderDao.getByStore(storeid);
 		Order orderGet = null;
 		for (Order order : listOrder) {
-			if (order.getId() == orderid) {
+			if (order.getId() == orderid && order.getStatus().equalsIgnoreCase(Order.Status.PAID.name())) {
 				cansend = true;
 				orderGet = order;
 				break;
@@ -139,9 +139,7 @@ public class OrderService {
 		Order orderGet = null;
 		boolean canreceive = false;
 		for (Order order : list) {
-			if (order.getId() == orderid
-					&& Order.Status.SENT.name().equalsIgnoreCase(
-							order.getStatus())) {
+			if (order.getId() == orderid && Order.Status.SENT.name().equalsIgnoreCase(order.getStatus())) {
 				canreceive = true;
 				orderGet = order;
 				break;
@@ -155,6 +153,40 @@ public class OrderService {
 				ma.setAttribute("message", "收货成功");
 			} else {
 				ma.setAttribute("message", "收货失败");
+			}
+		} else {
+			ma.setAttribute("message", "无权限操作");
+		}
+
+		return ma;
+	}
+	
+	public ModelAttribute pay(int orderid,int storeid,HttpSession session){
+		ModelAttribute ma = new ModelAttribute("forward:message.jsp");
+		User curUser = (User) session.getAttribute(User.CURRENT_USER);
+
+		if (curUser == null) {
+			ma.setAttribute("message", "未登录");
+			return ma;
+		}
+		List<Order> list = orderDao.getByCustomer(curUser.getId());
+		Order orderGet = null;
+		boolean canpay = false;
+		for (Order order : list) {
+			if (order.getId() == orderid && Order.Status.UNPAID.name().equalsIgnoreCase(order.getStatus())) {
+				canpay = true;
+				orderGet = order;
+				break;
+			}
+		}
+
+		if (canpay) {
+			orderGet.setStatus(Order.Status.PAID.name());
+			int res = orderDao.update(orderGet);
+			if (res > 0) {
+				ma.setAttribute("message", "付款成功");
+			} else {
+				ma.setAttribute("message", "付款失败");
 			}
 		} else {
 			ma.setAttribute("message", "无权限操作");
