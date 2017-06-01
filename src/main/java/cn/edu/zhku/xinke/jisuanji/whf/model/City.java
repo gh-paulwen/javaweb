@@ -37,5 +37,5 @@ public class City {
 		return "City [id=" + id + ", name=" + name + ", superCity=" + superCity
 				+ "]";
 	}
-
+	
 }

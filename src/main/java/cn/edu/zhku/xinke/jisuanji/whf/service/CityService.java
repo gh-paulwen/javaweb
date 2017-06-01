@@ -33,5 +33,4 @@ public class CityService {
 		return ma;
 	}
 	
-
 }

@@ -1,8 +1,6 @@
 package cn.edu.zhku.xinke.jisuanji.whf.model;
 
-/**
- * @author aScholars
- * */
+
 public class Cart {
 	
 	private int user;
@@ -40,7 +38,6 @@ public class Cart {
 		return "Cart [user=" + user + ", product=" + product + ", count="
 				+ count + "]";
 	}
-	
 	
 	
 }
