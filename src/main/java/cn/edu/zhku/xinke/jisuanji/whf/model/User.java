@@ -3,7 +3,6 @@ package cn.edu.zhku.xinke.jisuanji.whf.model;
 import java.util.Date;
 
 /**
- * @author Paul
  * 
  * */
 public class User {

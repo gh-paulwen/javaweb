@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 专门用作继承，目的是减少Servlet的数量，连接时url写成: servletName?method=methodName&param=xxx
- * @author Paul
  * 
  * */
 public abstract class BaseServlet extends HttpServlet{

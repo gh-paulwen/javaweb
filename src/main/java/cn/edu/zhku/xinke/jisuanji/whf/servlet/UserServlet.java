@@ -11,7 +11,6 @@ import cn.edu.zhku.xinke.jisuanji.whf.model.User;
 import cn.edu.zhku.xinke.jisuanji.whf.service.UserService;
 
 /**
- * @author Paul
  * 
  * */
 public class UserServlet extends BaseServlet{

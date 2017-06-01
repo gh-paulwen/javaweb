@@ -9,7 +9,6 @@ import cn.edu.zhku.xinke.jisuanji.whf.util.JdbcUtil;
 import cn.edu.zhku.xinke.jisuanji.whf.util.TxConstructor;
 
 /**
- * @author Paul
  * 
  * user dao
  * */
