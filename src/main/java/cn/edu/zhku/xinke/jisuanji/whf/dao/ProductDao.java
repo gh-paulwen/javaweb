@@ -111,9 +111,15 @@ public class ProductDao {
 	}
 	
 	public Product getById(int id){
-		String sql = "select * from product where id = ?";
+		String sql = "select * from product where id=?";
 		JdbcAction action = new JdbcAction(sql,id);
-		return jdbcUtil.query(action, Product.class);
+		return jdbcUtil.query(action,Product.class);
+	}
+	
+	public Map<String,Object> getForEdit(int id){
+		String sql = "select trim(product.id) as id,product.name,product.price,product.pic,product.description,product.store,product.secCategory,product.createDate,trim(category.id) as category from product , seccategory , category where product.secCategory = seccategory.id and seccategory.category = category.id and product.id = ?";
+		JdbcAction action = new JdbcAction(sql,id);
+		return jdbcUtil.queryMap(action);
 	}
 	
 	public List<Product> getByStore(int storeid){

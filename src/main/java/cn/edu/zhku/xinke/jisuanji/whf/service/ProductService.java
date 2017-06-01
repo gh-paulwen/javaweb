@@ -124,9 +124,15 @@ public class ProductService {
 			ma.setAttribute("message", "商品信息不全");
 			return ma;
 		}
+		
+		Product productGet = productDao.getById(product.getId());
+		productGet.setDescription(product.getDescription());
+		productGet.setName(product.getName());
+		productGet.setPrice(product.getPrice());
+		productGet.setSecCategory(product.getSecCategory());
 
-		if (canupdate) {
-			int res = productDao.update(product);
+		if (canupdate && productGet != null) {
+			int res = productDao.update(productGet);
 			if (res > 0) {
 				ma.setAttribute("message", "更新商品成功");
 			} else {
@@ -168,8 +174,8 @@ public class ProductService {
 	
 	public ModelAttribute getById(int id){
 		ModelAttribute ma = new ModelAttribute("forward:product.jsp");
-		Product product = productDao.getById(id);
-		ma.setAttribute("prodcut", product);
+		Map<String,Object> product = productDao.getForEdit(id);
+		ma.setAttribute("product", product);
 		return ma;
 	}
 	

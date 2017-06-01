@@ -85,3 +85,16 @@ $(function() {
         $.ajax(logoutap);
     });
 });
+
+
+$(function() {
+    $("#btn_edit").click(function() {
+        location.href = "my_edit.html";
+    });
+});
+
+$(function() {
+    $("#btn_admin").click(function() {
+        location.href = "admin.html";
+    });
+});

@@ -70,20 +70,20 @@ public class ProductJsonServlet extends JsonServlet {
 		}
 
 		HttpSession session = req.getSession();
+		int id = Integer.parseInt(req.getParameter("id"));
 		String name = req.getParameter("name");
 		double price = Double.parseDouble(req.getParameter("price"));
 		String description = req.getParameter("description");
-		int store = Integer.parseInt(req.getParameter("store"));
 		int secCategory = Integer.parseInt(req.getParameter("secCategory"));
-		String pic = req.getParameter("pic");
+		int store = Integer.parseInt(req.getParameter("store"));
 
 		Product product = new Product();
+		product.setId(id);
 		product.setName(name);
 		product.setPrice(price);
 		product.setDescription(description);
-		product.setStore(store);
 		product.setSecCategory(secCategory);
-		product.setPic(pic);
+		product.setStore(store);
 
 		ModelAttribute ma = productService.update(product, session);
 		return ma.get();

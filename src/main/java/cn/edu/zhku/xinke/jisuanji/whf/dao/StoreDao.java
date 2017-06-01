@@ -102,5 +102,11 @@ public class StoreDao {
 		JdbcAction action = new JdbcAction(sql,id);
 		return jdbcUtil.queryMapList(action).get(0);
 	}
+	
+	public List<Store> getAll(){
+		String sql = "select * from store";
+		JdbcAction action = new JdbcAction(sql);
+		return jdbcUtil.queryList(action, Store.class);
+	}
 
 }

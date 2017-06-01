@@ -29,8 +29,7 @@ public class JsonServlet extends HttpServlet {
 		String methodName = req.getParameter("method");
 		Class<?> clazz = this.getClass();
 		try {
-			Method method = clazz.getDeclaredMethod(methodName,
-					HttpServletRequest.class, HttpServletResponse.class);
+			Method method = clazz.getDeclaredMethod(methodName,HttpServletRequest.class, HttpServletResponse.class);
 			method.setAccessible(true);
 			Object obj = method.invoke(this, req, resp);
 			if (obj == null)

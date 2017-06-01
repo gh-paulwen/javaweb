@@ -91,11 +91,19 @@ public class UserDao {
 	 * 
 	 * */
 	public int update(User user){
+		return update(user,null);
+	}
+	
+	public int update(User user,TxConstructor tc){
 		String sql = "update user set name=?,password=?,type=?,status=?,email=? where id=?";
 		Object[] params = new Object[]{
 				user.getName(),user.getPassword(),user.getType(),user.getStatus(),user.getEmail(),user.getId()
 		};
 		JdbcAction action = new JdbcAction(sql,params);
+		if(tc != null){
+			tc.addAction(action);
+			return 0;
+		}
 		return jdbcUtil.execute(action);
 	}
 	

@@ -14,9 +14,11 @@
 }
 
 #btn_add_address,
-#btn_logout {
+#btn_logout,
+#btn_edit,
+#btn_admin {
     text-decoration: none;
-    width: 100px;
+    width: 120px;
     border: 0;
     border-radius: 3px;
     background-color: #008249;
@@ -26,10 +28,14 @@
 }
 
 #btn_add_address:hover,
-#btn_logout:hover {
+#btn_logout:hover,
+#btn_edit:hover,
+#btn_admin:hover {
     background-color: #009949;
 }
 
-#btn_logout {
+#btn_logout,
+#btn_edit,
+#btn_admin {
     margin-top: 20px;
 }

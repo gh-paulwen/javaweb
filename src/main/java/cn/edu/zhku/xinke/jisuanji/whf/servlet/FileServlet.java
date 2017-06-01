@@ -26,7 +26,7 @@ public class FileServlet extends BaseServlet {
 
 	private ServletFileUpload upload ;
 	
-	private String uploadDir = "/home/paul/Documents/upload";
+	private String uploadDir = "D:\\upload";
 	
 	private int maxSize = 1024 * 1024 * 5;
 	
@@ -92,7 +92,8 @@ public class FileServlet extends BaseServlet {
 		InputStream input = new FileInputStream(file);
 		OutputStream output = resp.getOutputStream();
 		int len = 0;
-		byte[] buffer = new byte[4096];
+		int _1M = 1024 * 1024;
+		byte[] buffer = new byte[_1M];
 		while((len = input.read(buffer)) > 0){
 			output.write(buffer,0,len);
 		}

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cn.edu.zhku.xinke.jisuanji.whf.dto.ModelAttribute;
 import cn.edu.zhku.xinke.jisuanji.whf.model.Store;
@@ -122,6 +123,19 @@ public class StoreJsonServlet extends JsonServlet{
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		ModelAttribute ma = storeService.getVerbose(id);
+		return ma.get();
+	}
+	
+	protected Object getAll(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
+		HttpSession session = req.getSession();
+		ModelAttribute ma = storeService.getAll(session);
+		
 		return ma.get();
 	}
 	

@@ -59,6 +59,24 @@ private UserService userService = UserService.getInstance();
 		return ma.get();
 	}
 	
+	protected Object update(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"POST".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
+		
+		String username = req.getParameter("username");
+		String email = req.getParameter("email");
+		
+		User user = new User();
+		user.setName(username);
+		user.setEmail(email);
+		ModelAttribute ma = userService.update(user,req.getSession());
+		return ma.get();
+	}
+	
 	/**
 	 * 获取个人信息
 	 * 
@@ -85,6 +103,18 @@ private UserService userService = UserService.getInstance();
 		HttpSession session = req.getSession();
 		session.removeAttribute(User.CURRENT_USER);
 		ma.setAttribute("message", "退出成功");
+		return ma.get();
+	}
+	
+	protected Object getAll(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String method = req.getMethod();
+		if(!"GET".equalsIgnoreCase(method)){
+			req.setAttribute("message", "Method : " + method + " is not supported");
+			req.getRequestDispatcher("/input.jsp").forward(req,resp);
+		}
+		HttpSession session = req.getSession();
+		ModelAttribute ma = userService.getAll(session);
 		return ma.get();
 	}
 

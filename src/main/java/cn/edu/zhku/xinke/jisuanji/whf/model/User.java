@@ -10,6 +10,12 @@ public class User {
 	
 	public final static String CURRENT_USER = "_current_user"; 
 	
+	public final static int TYPE_USER = 1;
+	
+	public final static int TYPE_STORE_HOLDER = 2;
+	
+	public final static int TYPE_ADMIN = 3;
+	
 	private int id;
 	
 	private String name;

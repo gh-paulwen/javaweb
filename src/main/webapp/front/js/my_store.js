@@ -37,6 +37,15 @@ $(function() {
             div.append(img);
             div.append(h3);
             div.append(h3price);
+
+            var div_edit = $(document.createElement("div"));
+            div_edit.css("text-align", "center");
+            var a_edit = $(document.createElement("a"));
+            a_edit.addClass("mybtn");
+            a_edit.append("修改商品");
+            a_edit.attr("href", `product_edit.html?product=${product.id}&store=${product.store}`);
+            div_edit.append(a_edit);
+            div.append(div_edit);
             div_products.append(div);
             div_products.append("<div class='col-xs-1' style='margin-top:20px;'></div>");
         }
