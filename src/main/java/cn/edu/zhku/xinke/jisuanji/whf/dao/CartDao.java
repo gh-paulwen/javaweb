@@ -9,9 +9,7 @@ import java.util.Map;
 
 import cn.edu.zhku.xinke.jisuanji.whf.model.Cart;
 
-/**
- * @author aScholars
- * */
+
 public class CartDao {
 	/**
 	 * 单例实现
@@ -29,7 +27,7 @@ public class CartDao {
 	 */
 	public int save(Cart cart){
 //		String sql="insert into cart values(?,?,?)";
-		//return jdbcUtil.execute(sql,cart.getUserId(),cart.getProductId(),cart.getCount());
+		//return jdbcUtil.execute(sql,cart.getUser(),cart.getProduct(),cart.getCount());
 		return save(cart,null);
 	}
 	
@@ -53,8 +51,8 @@ public class CartDao {
 	 * 从购物车删除商品
 	 */
 	public int delete(Cart cart){
-//		String sql="delete from cart where userId=? and productId=?";
-		//return jdbcUtil.execute(sql, cart.getUserId(),cart.getProductId());
+//		String sql="delete from cart where user=? and product=?";
+		//return jdbcUtil.execute(sql, cart.getUser(),cart.getProduct());
 		return delete(cart,null);
 	}
 	
@@ -78,8 +76,8 @@ public class CartDao {
 	 * 更新购物车商品
 	 */
 	public int update(Cart cart){
-//		String sql="update cart set count=? where userId=? and productId=?";
-		//return jdbcUtil.execute(sql, cart.getUserId(),cart.getProductId(),cart.getCount());
+//		String sql="update cart set count=? where user=? and product=?";
+		//return jdbcUtil.execute(sql, cart.getUser(),cart.getProduct(),cart.getCount());
 		return update(cart,null);
 	}
 	

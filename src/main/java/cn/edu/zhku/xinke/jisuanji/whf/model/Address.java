@@ -69,5 +69,4 @@ public class Address {
 				+ receiverName + ", receiverPhone=" + receiverPhone + "]";
 	}
 
-
 }
